@@ -17,6 +17,7 @@ public:
 	Medicamento(){}
 	Medicamento(System::String^ nombre, Clasificación categoría, 
 		double dosisRecomendadaMg, System::String^ principiosActivos);
+	Medicamento(Medicamento% m);
 	System::String^ getNombre();
 	int getNumRegistro();
 	Clasificación getCategoría();

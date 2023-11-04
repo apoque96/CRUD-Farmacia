@@ -2,13 +2,8 @@
 #include "Lista.h"
 #include "Proveedor.h"
 #include "Inventario.h"
-//Constructor de la lista
-template <class T>
-Lista<T>::Lista() {
-	size = 0;
-}
 //Añade un nodo al final de la lista
-template <class T>	
+template <typename T>
 void Lista<T>::Add(T val) {
 	size++;
 	if (!head) {
@@ -22,7 +17,7 @@ void Lista<T>::Add(T val) {
 	tail = tail->next;
 }
 //Borra el nodo según el valor dado
-template <class T>
+template <typename T>
 void Lista<T>::Remove(T val) {
 	if (size <= 0) return;
 	size--;
@@ -51,7 +46,7 @@ void Lista<T>::Remove(T val) {
 	current = nullptr;
 }
 //Borra el nodo según el indice indicado
-template <class T>
+template <typename T>
 void Lista<T>::Remove(int index) {
 	//Si el indice está fuera de rango, no hace nada
 	if (index < 0 || index >= size) return;
@@ -88,7 +83,7 @@ void Lista<T>::Remove(int index) {
 	node_to_delete = nullptr;
 }
 //Obtiene el nodo con el valor dado
-template <class T>
+template <typename T>
 Lista<T>::Node<T>^ Lista<T>::Get(T val) {
 	if (size <= 0) return nullptr;
 	Node<T>^ current = head;
@@ -98,7 +93,7 @@ Lista<T>::Node<T>^ Lista<T>::Get(T val) {
 	return current;
 }
 //Obtiene el nodo en el indice dado
-template <class T>
+template <typename T>
 Lista<T>::Node<T>^ Lista<T>::Get(int index) {
 	if (index < 0) return nullptr;
 	Node^ current = head;
@@ -108,25 +103,25 @@ Lista<T>::Node<T>^ Lista<T>::Get(int index) {
 	return current;
 }
 
-template <class T>
+template <typename T>
 bool Lista<T>::isEmpty() {
 	return size == 0;
 }
 
-template <class T>
+template <typename T>
 int Lista<T>::Size() {
 	return size;
 }
 
 #pragma region Sort
-template <class T>
+template <typename T>
 void Lista<T>::swap(Node<T>^ a, Node<T>^ b) {
 	T^ temp = a->val;
 	a->val = b->val;
 	b->val = a->val;
 }
 
-template <class T>
+template <typename T>
 Lista<T>::Node<T>^ Lista<T>::partition(Node<T>^ low, Node<T>^ high) {
 	T^ pivot = high->val;
 	Node<T>^ i = low->prev;
@@ -145,7 +140,7 @@ Lista<T>::Node<T>^ Lista<T>::partition(Node<T>^ low, Node<T>^ high) {
 template <class T>
 void Lista<T>::quickSort(Node<T>^ low, Node<T>^ high) {
 	if (high != nullptr && low != high && low != high->next) {
-		Node^ pivot = partition(low, high);
+		Node<T>^ pivot = partition(low, high);
 		quickSort(low, pivot->prev);
 		quickSort(pivot->next, high);
 	}

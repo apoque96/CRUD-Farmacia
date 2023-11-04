@@ -8,6 +8,12 @@ Medicamento::Medicamento(System::String^ nombre, Clasificación categoría,
 	this->dosisRecomendada_mg = dosisRecomendadaMg;
 	this->principiosActivos = principiosActivos;
 }
+Medicamento::Medicamento(Medicamento% m) {
+	nombre = m.nombre;
+	categoría = m.categoría;
+	dosisRecomendada_mg = m.dosisRecomendada_mg;
+	principiosActivos = m.principiosActivos;
+}
 System::String^ Medicamento::getNombre() {
 	return nombre;
 }

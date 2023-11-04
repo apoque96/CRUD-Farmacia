@@ -8,11 +8,12 @@ private:
 		Node<T>^ prev;
 		T val;
 	};
-	Node^ head;
-	Node^ tail;
+	Node<T>^ head;
+	Node<T>^ tail;
 	int size;
 public:
-	Lista();
+	//Constructor de la lista
+	Lista() : size(0){}
 	void Add(T val);
 	void Remove(T val);
 	void Remove(int index);
