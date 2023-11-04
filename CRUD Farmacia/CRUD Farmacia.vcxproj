@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -121,12 +121,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Inventario.cpp" />
+    <ClCompile Include="Lista.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Medicamentos.cpp" />
+    <ClCompile Include="Proveedor.cpp" />
+    <ClCompile Include="Sistema.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Inventario.h" />
+    <ClInclude Include="Lista.h" />
     <ClInclude Include="main.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Medicamento.h" />
+    <ClInclude Include="Proveedor.h" />
+    <ClInclude Include="Sistema.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
