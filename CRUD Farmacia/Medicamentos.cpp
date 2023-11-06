@@ -7,12 +7,14 @@ Medicamento::Medicamento(System::String^ nombre, Clasificación categoría,
 	this->categoría = categoría;
 	this->dosisRecomendada_mg = dosisRecomendadaMg;
 	this->principiosActivos = principiosActivos;
+	this->numRegistro = idRegistro++;
 }
 Medicamento::Medicamento(Medicamento% m) {
 	nombre = m.nombre;
 	categoría = m.categoría;
 	dosisRecomendada_mg = m.dosisRecomendada_mg;
 	principiosActivos = m.principiosActivos;
+	numRegistro = m.numRegistro;
 }
 System::String^ Medicamento::getNombre() {
 	return nombre;

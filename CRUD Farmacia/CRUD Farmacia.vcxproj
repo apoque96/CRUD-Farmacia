@@ -122,7 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Inventario.cpp" />
-    <ClCompile Include="Lista.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Medicamentos.cpp" />
     <ClCompile Include="Proveedor.cpp" />
