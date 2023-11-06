@@ -2,13 +2,14 @@
 #include "Proveedor.h"
 
 Proveedor::Proveedor(System::String^ nombre, int Nit, System::String^ direcciónFiscal,
-	System::String^ dirección, System::String^ teléfono, System::String^ correo) {
+	System::String^ dirección, System::String^ teléfono, System::String^ correo, int id) {
 	this->nombre = nombre;
 	this->Nit = Nit;
 	this->direcciónFiscal = direcciónFiscal;
 	this->dirección = dirección;
 	this->teléfono = teléfono;
 	this->correo = correo;
+	this->id = id;
 }
 
 System::String^ Proveedor::getNombre() {
@@ -28,4 +29,7 @@ System::String^ Proveedor::getTeléfono() {
 }
 System::String^ Proveedor::getCorreo() {
 	return correo;
+}
+int Proveedor::getId() {
+	return id;
 }
