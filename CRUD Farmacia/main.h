@@ -459,6 +459,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->tB_dosis->Name = L"tB_dosis";
 			this->tB_dosis->Size = System::Drawing::Size(100, 20);
 			this->tB_dosis->TabIndex = 21;
+			this->tB_dosis->TextMaskFormat = System::Windows::Forms::MaskFormat::IncludePromptAndLiterals;
 			// 
 			// tB_stock
 			// 
@@ -476,6 +477,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->tB_compra->Name = L"tB_compra";
 			this->tB_compra->Size = System::Drawing::Size(100, 20);
 			this->tB_compra->TabIndex = 23;
+			this->tB_compra->TextMaskFormat = System::Windows::Forms::MaskFormat::IncludePromptAndLiterals;
 			// 
 			// tB_venta
 			// 
@@ -484,6 +486,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->tB_venta->Name = L"tB_venta";
 			this->tB_venta->Size = System::Drawing::Size(100, 20);
 			this->tB_venta->TabIndex = 24;
+			this->tB_venta->TextMaskFormat = System::Windows::Forms::MaskFormat::IncludePromptAndLiterals;
 			// 
 			// lbl_caducidad
 			// 
