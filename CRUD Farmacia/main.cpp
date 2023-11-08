@@ -81,26 +81,37 @@ System::Void main::main_Load(System::Object^ sender, System::EventArgs^ e) {
 
 	desplegarProveedores();
 }
+//En caso de que al ingresar algún dato tipo double, reemplaza todos los espacios vaciós con 0
+double validarDouble(System::String^ s) {
+	s = s->Replace('_', '0');
+	return System::Convert::ToDouble(s);
+}
 
 System::Void main::btn_agregar_Click(System::Object^ sender, System::EventArgs^ e) {
-	Inventario^ inventario = gcnew Inventario(
-		tB_nombre->Text,
-		categoría,
-		tB_principio->Text,
-		System::Convert::ToDouble(tB_dosis->Text),
-		System::Convert::ToInt32(tB_stock->Text),
-		sistema.getProveedor(System::Convert::ToInt16(dgv_proveedor->CurrentRow->Cells[6]->Value)),
-		dT_caducidad->Value.ToString(),
-		System::Convert::ToDouble(tB_compra->Text),
-		System::Convert::ToDouble(tB_venta->Text));
-	sistema.añadirInventario(inventario);
-	dgv_medicamento->Rows->Add(
-		inventario->getNombre(),
-		inventario->getNumRegistro(),
-		inventario->getCategoría() == 0 ? "Venta Libre" : "Venta Receta",
-		inventario->getPrincipiosActivos(),
-		inventario->getDosisMg()
-	);
+	try {
+		Inventario^ inventario = gcnew Inventario(
+			tB_nombre->Text,
+			categoría,
+			tB_principio->Text,
+			validarDouble(tB_dosis->Text),
+			System::Convert::ToInt32(tB_stock->Text),
+			sistema.getProveedor(System::Convert::ToInt16(dgv_proveedor->CurrentRow->Cells[6]->Value)),
+			dT_caducidad->Value.ToString(),
+			validarDouble(tB_compra->Text),
+			validarDouble(tB_venta->Text));
+			sistema.añadirInventario(inventario);
+		dgv_medicamento->Rows->Add(
+			inventario->getNombre(),
+			inventario->getNumRegistro(),
+			inventario->getCategoría() == 0 ? "Venta Libre" : "Venta Receta",
+			inventario->getPrincipiosActivos(),
+			inventario->getDosisMg()
+		);
+	}
+	catch (...)
+	{
+		System::Windows::Forms::MessageBox::Show("Falta algún dato");
+	}
 }
 //Muestra el panel de los proveedores
 System::Void main::btn_proveedores_Click(System::Object^ sender, System::EventArgs^ e) {
