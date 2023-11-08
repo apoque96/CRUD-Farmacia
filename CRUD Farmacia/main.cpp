@@ -29,7 +29,17 @@ void main::desplegarProveedores() {
 	}
 	dgv_proveedor->CurrentCell = dgv_proveedor->Rows[0]->Cells[0];
 }
-
+//Despliega los datos del inventario
+void main::desplegarInventario(Inventario^ inventario) {
+	dgv_inventario->Rows->Clear();
+	dgv_inventario->Rows->Add(
+		inventario->getCantidad().ToString(),
+		inventario->getCaducidad(),
+		inventario->getProveedor()->getNombre(),
+		inventario->getCompra().ToString(),
+		inventario->getVenta().ToString()
+	);
+}
 //Llena el dataGridView con los 4 proveedores
 System::Void main::main_Load(System::Object^ sender, System::EventArgs^ e) {
 	sistema.añadirProveedor(gcnew Proveedor(
@@ -108,4 +118,10 @@ System::Void main::rB_libre_Click(System::Object^ sender, System::EventArgs^ e) 
 //Selecciona la categoría "Venta receta"
 System::Void main::rB_receta_Click(System::Object^ sender, System::EventArgs^ e) {
 	categoría = ventaReceta;
+}
+//Despliega los datos de inventario del medicamento seleccionado
+System::Void main::dgv_medicamento_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	desplegarInventario(
+		sistema.getInventario(
+		System::Convert::ToInt32(dgv_medicamento->CurrentRow->Cells[1]->Value)));
 }

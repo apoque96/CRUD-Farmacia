@@ -130,6 +130,7 @@ private: System::Windows::Forms::Label^ lbl_categoria;
 private: System::Windows::Forms::RadioButton^ rB_libre;
 
 private: System::Windows::Forms::RadioButton^ rB_receta;
+private: System::Windows::Forms::Button^ btn_inventario;
 
 
 
@@ -216,6 +217,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->lbl_categoria = (gcnew System::Windows::Forms::Label());
 			this->rB_libre = (gcnew System::Windows::Forms::RadioButton());
 			this->rB_receta = (gcnew System::Windows::Forms::RadioButton());
+			this->btn_inventario = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_medicamento))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_inventario))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_proveedor))->BeginInit();
@@ -236,6 +238,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->dgv_medicamento->ReadOnly = true;
 			this->dgv_medicamento->Size = System::Drawing::Size(956, 136);
 			this->dgv_medicamento->TabIndex = 0;
+			this->dgv_medicamento->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &main::dgv_medicamento_CellClick);
 			// 
 			// column_Medicamento
 			// 
@@ -284,7 +287,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->dgv_inventario->Location = System::Drawing::Point(12, 347);
 			this->dgv_inventario->Name = L"dgv_inventario";
 			this->dgv_inventario->ReadOnly = true;
-			this->dgv_inventario->Size = System::Drawing::Size(956, 136);
+			this->dgv_inventario->Size = System::Drawing::Size(956, 74);
 			this->dgv_inventario->TabIndex = 1;
 			// 
 			// Stock
@@ -632,11 +635,21 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->rB_receta->UseVisualStyleBackColor = true;
 			this->rB_receta->Click += gcnew System::EventHandler(this, &main::rB_receta_Click);
 			// 
+			// btn_inventario
+			// 
+			this->btn_inventario->Location = System::Drawing::Point(579, 122);
+			this->btn_inventario->Name = L"btn_inventario";
+			this->btn_inventario->Size = System::Drawing::Size(75, 40);
+			this->btn_inventario->TabIndex = 33;
+			this->btn_inventario->Text = L"Inventario";
+			this->btn_inventario->UseVisualStyleBackColor = true;
+			// 
 			// main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(980, 495);
+			this->ClientSize = System::Drawing::Size(980, 427);
+			this->Controls->Add(this->btn_inventario);
 			this->Controls->Add(this->pl_proveedores);
 			this->Controls->Add(this->rB_receta);
 			this->Controls->Add(this->rB_libre);
@@ -684,6 +697,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 		Clasificación categoría = ventaLibre;
 
 		void desplegarProveedores();
+		void desplegarInventario(Inventario^ inventario);
 
 		//Llena el dataGridView con los 4 proveedores
 		private: System::Void main_Load(System::Object^ sender, System::EventArgs^ e);
@@ -698,6 +712,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 		private: System::Void rB_libre_Click(System::Object^ sender, System::EventArgs^ e);
 		//Selecciona la categoría "Venta receta"
 		private: System::Void rB_receta_Click(System::Object^ sender, System::EventArgs^ e);
+		private: System::Void dgv_medicamento_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
 #pragma endregion
 	};
 }
