@@ -33,7 +33,7 @@ void Sistema::añadirProveedor(Proveedor^ proveedor) {
 }
 
 Proveedor^ Sistema::getProveedor(int index) {
-	return listaProveedores.GetNodeVal(listaProveedores.Get(index));;
+	return listaProveedores.GetNodeVal(listaProveedores.Get(index));
 }
 
 void Sistema::añadirInventario(Inventario^ inventario) {
@@ -41,5 +41,13 @@ void Sistema::añadirInventario(Inventario^ inventario) {
 }
 
 Inventario^ Sistema::getInventario(int index) {
-	return listaInventario.GetNodeVal(listaInventario.Get(index));;
+	return listaInventario.GetNodeVal(listaInventario.Get(index));
+}
+
+Inventario^ Sistema::getInventario(System::String^ nombre) {
+	return listaInventario.GetNodeVal(listaInventario.GetMedicamento(nombre));
+}
+
+Inventario^ Sistema::getInventarioPrincipio(System::String^ principio) {
+	return listaInventario.GetNodeVal(listaInventario.GetMedicamentoPrincipio(principio));
 }

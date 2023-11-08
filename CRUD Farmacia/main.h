@@ -130,6 +130,33 @@ private: System::Windows::Forms::Label^ lbl_categoria;
 private: System::Windows::Forms::RadioButton^ rB_libre;
 
 private: System::Windows::Forms::RadioButton^ rB_receta;
+private: System::Windows::Forms::Button^ btn_inventario;
+private: System::Windows::Forms::Panel^ pl_inventario;
+
+
+private: System::Windows::Forms::Label^ pl_inventario_lbl_nombre;
+private: System::Windows::Forms::Button^ pl_inventario_btn_mostrar;
+
+private: System::Windows::Forms::TextBox^ pl_inventario_tB_nombre;
+private: System::Windows::Forms::Button^ pl_inventario_btn_cerrar;
+private: System::Windows::Forms::Button^ btn_filtrar;
+private: System::Windows::Forms::Panel^ pl_buscar;
+private: System::Windows::Forms::Button^ pl_buscar_btn_cerrar;
+
+
+private: System::Windows::Forms::Button^ pl_buscar_btn_nombre;
+
+private: System::Windows::Forms::TextBox^ pl_buscar_tB_nombre;
+
+private: System::Windows::Forms::Label^ pl_buscar_lbl_nombre;
+private: System::Windows::Forms::Button^ pl_buscar_btn_principio;
+
+
+private: System::Windows::Forms::TextBox^ pl_buscar_tB_principio;
+
+private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
+
+
 
 
 
@@ -216,10 +243,27 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->lbl_categoria = (gcnew System::Windows::Forms::Label());
 			this->rB_libre = (gcnew System::Windows::Forms::RadioButton());
 			this->rB_receta = (gcnew System::Windows::Forms::RadioButton());
+			this->btn_inventario = (gcnew System::Windows::Forms::Button());
+			this->pl_inventario = (gcnew System::Windows::Forms::Panel());
+			this->pl_inventario_btn_cerrar = (gcnew System::Windows::Forms::Button());
+			this->pl_inventario_btn_mostrar = (gcnew System::Windows::Forms::Button());
+			this->pl_inventario_tB_nombre = (gcnew System::Windows::Forms::TextBox());
+			this->pl_inventario_lbl_nombre = (gcnew System::Windows::Forms::Label());
+			this->btn_filtrar = (gcnew System::Windows::Forms::Button());
+			this->pl_buscar = (gcnew System::Windows::Forms::Panel());
+			this->pl_buscar_btn_cerrar = (gcnew System::Windows::Forms::Button());
+			this->pl_buscar_btn_nombre = (gcnew System::Windows::Forms::Button());
+			this->pl_buscar_tB_nombre = (gcnew System::Windows::Forms::TextBox());
+			this->pl_buscar_lbl_nombre = (gcnew System::Windows::Forms::Label());
+			this->pl_buscar_tB_principio = (gcnew System::Windows::Forms::TextBox());
+			this->pl_buscar_lbl_principio = (gcnew System::Windows::Forms::Label());
+			this->pl_buscar_btn_principio = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_medicamento))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_inventario))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_proveedor))->BeginInit();
 			this->pl_proveedores->SuspendLayout();
+			this->pl_inventario->SuspendLayout();
+			this->pl_buscar->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// dgv_medicamento
@@ -236,6 +280,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->dgv_medicamento->ReadOnly = true;
 			this->dgv_medicamento->Size = System::Drawing::Size(956, 136);
 			this->dgv_medicamento->TabIndex = 0;
+			this->dgv_medicamento->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &main::dgv_medicamento_CellClick);
 			// 
 			// column_Medicamento
 			// 
@@ -284,7 +329,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->dgv_inventario->Location = System::Drawing::Point(12, 347);
 			this->dgv_inventario->Name = L"dgv_inventario";
 			this->dgv_inventario->ReadOnly = true;
-			this->dgv_inventario->Size = System::Drawing::Size(956, 136);
+			this->dgv_inventario->Size = System::Drawing::Size(956, 74);
 			this->dgv_inventario->TabIndex = 1;
 			// 
 			// Stock
@@ -370,12 +415,13 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			// 
 			// btn_buscar
 			// 
-			this->btn_buscar->Location = System::Drawing::Point(681, 103);
+			this->btn_buscar->Location = System::Drawing::Point(417, 135);
 			this->btn_buscar->Name = L"btn_buscar";
-			this->btn_buscar->Size = System::Drawing::Size(75, 59);
+			this->btn_buscar->Size = System::Drawing::Size(75, 40);
 			this->btn_buscar->TabIndex = 7;
 			this->btn_buscar->Text = L"Buscar";
 			this->btn_buscar->UseVisualStyleBackColor = true;
+			this->btn_buscar->Click += gcnew System::EventHandler(this, &main::btn_buscar_Click);
 			// 
 			// lbl_nombre
 			// 
@@ -635,11 +681,158 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->rB_receta->UseVisualStyleBackColor = true;
 			this->rB_receta->Click += gcnew System::EventHandler(this, &main::rB_receta_Click);
 			// 
+			// btn_inventario
+			// 
+			this->btn_inventario->Location = System::Drawing::Point(302, 135);
+			this->btn_inventario->Name = L"btn_inventario";
+			this->btn_inventario->Size = System::Drawing::Size(75, 40);
+			this->btn_inventario->TabIndex = 33;
+			this->btn_inventario->Text = L"Inventario";
+			this->btn_inventario->UseVisualStyleBackColor = true;
+			this->btn_inventario->Click += gcnew System::EventHandler(this, &main::btn_inventario_Click);
+			// 
+			// pl_inventario
+			// 
+			this->pl_inventario->Controls->Add(this->pl_inventario_btn_cerrar);
+			this->pl_inventario->Controls->Add(this->pl_inventario_btn_mostrar);
+			this->pl_inventario->Controls->Add(this->pl_inventario_tB_nombre);
+			this->pl_inventario->Controls->Add(this->pl_inventario_lbl_nombre);
+			this->pl_inventario->Location = System::Drawing::Point(235, 283);
+			this->pl_inventario->Name = L"pl_inventario";
+			this->pl_inventario->Size = System::Drawing::Size(200, 121);
+			this->pl_inventario->TabIndex = 34;
+			this->pl_inventario->Visible = false;
+			// 
+			// pl_inventario_btn_cerrar
+			// 
+			this->pl_inventario_btn_cerrar->Location = System::Drawing::Point(55, 87);
+			this->pl_inventario_btn_cerrar->Name = L"pl_inventario_btn_cerrar";
+			this->pl_inventario_btn_cerrar->Size = System::Drawing::Size(75, 31);
+			this->pl_inventario_btn_cerrar->TabIndex = 36;
+			this->pl_inventario_btn_cerrar->Text = L"cerrar";
+			this->pl_inventario_btn_cerrar->UseVisualStyleBackColor = true;
+			this->pl_inventario_btn_cerrar->Click += gcnew System::EventHandler(this, &main::pl_inventario_btn_cerrar_Click);
+			// 
+			// pl_inventario_btn_mostrar
+			// 
+			this->pl_inventario_btn_mostrar->Location = System::Drawing::Point(55, 56);
+			this->pl_inventario_btn_mostrar->Name = L"pl_inventario_btn_mostrar";
+			this->pl_inventario_btn_mostrar->Size = System::Drawing::Size(75, 31);
+			this->pl_inventario_btn_mostrar->TabIndex = 35;
+			this->pl_inventario_btn_mostrar->Text = L"mostrar";
+			this->pl_inventario_btn_mostrar->UseVisualStyleBackColor = true;
+			this->pl_inventario_btn_mostrar->Click += gcnew System::EventHandler(this, &main::pl_inventario_btn_mostrar_Click);
+			// 
+			// pl_inventario_tB_nombre
+			// 
+			this->pl_inventario_tB_nombre->Location = System::Drawing::Point(44, 30);
+			this->pl_inventario_tB_nombre->Name = L"pl_inventario_tB_nombre";
+			this->pl_inventario_tB_nombre->Size = System::Drawing::Size(100, 20);
+			this->pl_inventario_tB_nombre->TabIndex = 35;
+			// 
+			// pl_inventario_lbl_nombre
+			// 
+			this->pl_inventario_lbl_nombre->AutoSize = true;
+			this->pl_inventario_lbl_nombre->Location = System::Drawing::Point(77, 14);
+			this->pl_inventario_lbl_nombre->Name = L"pl_inventario_lbl_nombre";
+			this->pl_inventario_lbl_nombre->Size = System::Drawing::Size(44, 13);
+			this->pl_inventario_lbl_nombre->TabIndex = 0;
+			this->pl_inventario_lbl_nombre->Text = L"Nombre";
+			// 
+			// btn_filtrar
+			// 
+			this->btn_filtrar->Location = System::Drawing::Point(681, 103);
+			this->btn_filtrar->Name = L"btn_filtrar";
+			this->btn_filtrar->Size = System::Drawing::Size(75, 59);
+			this->btn_filtrar->TabIndex = 35;
+			this->btn_filtrar->Text = L"Filtrar";
+			this->btn_filtrar->UseVisualStyleBackColor = true;
+			// 
+			// pl_buscar
+			// 
+			this->pl_buscar->Controls->Add(this->pl_buscar_btn_principio);
+			this->pl_buscar->Controls->Add(this->pl_buscar_tB_principio);
+			this->pl_buscar->Controls->Add(this->pl_buscar_lbl_principio);
+			this->pl_buscar->Controls->Add(this->pl_buscar_btn_cerrar);
+			this->pl_buscar->Controls->Add(this->pl_buscar_btn_nombre);
+			this->pl_buscar->Controls->Add(this->pl_buscar_tB_nombre);
+			this->pl_buscar->Controls->Add(this->pl_buscar_lbl_nombre);
+			this->pl_buscar->Location = System::Drawing::Point(461, 283);
+			this->pl_buscar->Name = L"pl_buscar";
+			this->pl_buscar->Size = System::Drawing::Size(243, 121);
+			this->pl_buscar->TabIndex = 37;
+			this->pl_buscar->Visible = false;
+			// 
+			// pl_buscar_btn_cerrar
+			// 
+			this->pl_buscar_btn_cerrar->Location = System::Drawing::Point(81, 87);
+			this->pl_buscar_btn_cerrar->Name = L"pl_buscar_btn_cerrar";
+			this->pl_buscar_btn_cerrar->Size = System::Drawing::Size(75, 31);
+			this->pl_buscar_btn_cerrar->TabIndex = 36;
+			this->pl_buscar_btn_cerrar->Text = L"cerrar";
+			this->pl_buscar_btn_cerrar->UseVisualStyleBackColor = true;
+			this->pl_buscar_btn_cerrar->Click += gcnew System::EventHandler(this, &main::pl_buscar_btn_cerrar_Click);
+			// 
+			// pl_buscar_btn_nombre
+			// 
+			this->pl_buscar_btn_nombre->Location = System::Drawing::Point(23, 56);
+			this->pl_buscar_btn_nombre->Name = L"pl_buscar_btn_nombre";
+			this->pl_buscar_btn_nombre->Size = System::Drawing::Size(75, 31);
+			this->pl_buscar_btn_nombre->TabIndex = 35;
+			this->pl_buscar_btn_nombre->Text = L"Nombre";
+			this->pl_buscar_btn_nombre->UseVisualStyleBackColor = true;
+			this->pl_buscar_btn_nombre->Click += gcnew System::EventHandler(this, &main::pl_buscar_btn_nombre_Click);
+			// 
+			// pl_buscar_tB_nombre
+			// 
+			this->pl_buscar_tB_nombre->Location = System::Drawing::Point(12, 30);
+			this->pl_buscar_tB_nombre->Name = L"pl_buscar_tB_nombre";
+			this->pl_buscar_tB_nombre->Size = System::Drawing::Size(100, 20);
+			this->pl_buscar_tB_nombre->TabIndex = 35;
+			// 
+			// pl_buscar_lbl_nombre
+			// 
+			this->pl_buscar_lbl_nombre->AutoSize = true;
+			this->pl_buscar_lbl_nombre->Location = System::Drawing::Point(43, 14);
+			this->pl_buscar_lbl_nombre->Name = L"pl_buscar_lbl_nombre";
+			this->pl_buscar_lbl_nombre->Size = System::Drawing::Size(44, 13);
+			this->pl_buscar_lbl_nombre->TabIndex = 0;
+			this->pl_buscar_lbl_nombre->Text = L"Nombre";
+			// 
+			// pl_buscar_tB_principio
+			// 
+			this->pl_buscar_tB_principio->Location = System::Drawing::Point(132, 30);
+			this->pl_buscar_tB_principio->Name = L"pl_buscar_tB_principio";
+			this->pl_buscar_tB_principio->Size = System::Drawing::Size(100, 20);
+			this->pl_buscar_tB_principio->TabIndex = 38;
+			// 
+			// pl_buscar_lbl_principio
+			// 
+			this->pl_buscar_lbl_principio->AutoSize = true;
+			this->pl_buscar_lbl_principio->Location = System::Drawing::Point(163, 14);
+			this->pl_buscar_lbl_principio->Name = L"pl_buscar_lbl_principio";
+			this->pl_buscar_lbl_principio->Size = System::Drawing::Size(47, 13);
+			this->pl_buscar_lbl_principio->TabIndex = 37;
+			this->pl_buscar_lbl_principio->Text = L"Principio";
+			// 
+			// pl_buscar_btn_principio
+			// 
+			this->pl_buscar_btn_principio->Location = System::Drawing::Point(146, 56);
+			this->pl_buscar_btn_principio->Name = L"pl_buscar_btn_principio";
+			this->pl_buscar_btn_principio->Size = System::Drawing::Size(75, 31);
+			this->pl_buscar_btn_principio->TabIndex = 39;
+			this->pl_buscar_btn_principio->Text = L"Principio";
+			this->pl_buscar_btn_principio->UseVisualStyleBackColor = true;
+			this->pl_buscar_btn_principio->Click += gcnew System::EventHandler(this, &main::pl_buscar_btn_principio_Click);
+			// 
 			// main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(980, 495);
+			this->ClientSize = System::Drawing::Size(980, 427);
+			this->Controls->Add(this->pl_buscar);
+			this->Controls->Add(this->btn_filtrar);
+			this->Controls->Add(this->pl_inventario);
 			this->Controls->Add(this->pl_proveedores);
 			this->Controls->Add(this->rB_receta);
 			this->Controls->Add(this->rB_libre);
@@ -668,6 +861,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			this->Controls->Add(this->btn_agregar);
 			this->Controls->Add(this->dgv_inventario);
 			this->Controls->Add(this->dgv_medicamento);
+			this->Controls->Add(this->btn_inventario);
 			this->Name = L"main";
 			this->Text = L"main";
 			this->Load += gcnew System::EventHandler(this, &main::main_Load);
@@ -675,6 +869,10 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_inventario))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_proveedor))->EndInit();
 			this->pl_proveedores->ResumeLayout(false);
+			this->pl_inventario->ResumeLayout(false);
+			this->pl_inventario->PerformLayout();
+			this->pl_buscar->ResumeLayout(false);
+			this->pl_buscar->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -687,6 +885,7 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 		Clasificación categoría = ventaLibre;
 
 		void desplegarProveedores();
+		void desplegarInventario(Inventario^ inventario);
 
 		//Llena el dataGridView con los 4 proveedores
 		private: System::Void main_Load(System::Object^ sender, System::EventArgs^ e);
@@ -701,6 +900,22 @@ private: System::Windows::Forms::RadioButton^ rB_receta;
 		private: System::Void rB_libre_Click(System::Object^ sender, System::EventArgs^ e);
 		//Selecciona la categoría "Venta receta"
 		private: System::Void rB_receta_Click(System::Object^ sender, System::EventArgs^ e);
+		//Despliega el inventario del medicamento dado
+		private: System::Void dgv_medicamento_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
+		//Muestra el panel para que el usuario ingrese el medicamento a buscar
+		private: System::Void btn_inventario_Click(System::Object^ sender, System::EventArgs^ e);
+		//Cierra el panel para buscar medicamento por nombre
+		private: System::Void pl_inventario_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Busca el inventario del medicamento a partir de su nombre y luego despliega el inventario
+		private: System::Void pl_inventario_btn_mostrar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Muestra el panel para buscar el medicamento a partir del nombre o principio activo
+		private: System::Void btn_buscar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Cierra el panel de busqueda
+		private: System::Void pl_buscar_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Busca el medicamento a partir de su nombre
+		private: System::Void pl_buscar_btn_nombre_Click(System::Object^ sender, System::EventArgs^ e);
+		//Busca el medicamento a partir de su principio activo
+		private: System::Void pl_buscar_btn_principio_Click(System::Object^ sender, System::EventArgs^ e);
 #pragma endregion
 	};
 }

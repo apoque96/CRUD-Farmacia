@@ -1,4 +1,5 @@
 #pragma once
+#include "Inventario.h"
 template <class T>
 ref class Lista {
 private:
@@ -112,8 +113,30 @@ public:
 		return current;
 	}
 
+	//Obtiene el nodo con el nombre del medicamento dado
+	Node<Inventario^>^ GetMedicamento(System::String^ nombre) {
+		Node<Inventario^>^ current = head;
+		while (current) {
+			if (!System::String::Compare(nombre, current->val->getNombre())) return current;
+			current = current->next;
+		}
+		return nullptr;
+	}
+
+	//Obtiene el nodo con el principio activo del medicamento dado
+	Node<Inventario^>^ GetMedicamentoPrincipio(System::String^ principio) {
+		Node<Inventario^>^ current = head;
+		while (current) {
+			if (!System::String::Compare(principio, current->val->getPrincipiosActivos())) return current;
+			current = current->next;
+		}
+		return nullptr;
+	}
+
+	//Obtiene el valor del nodo
 	T GetNodeVal(Node<T>^ node) {
-		return node->val;
+		if(node) return node->val;
+		throw 0;
 	}
 
 	bool isEmpty() {
