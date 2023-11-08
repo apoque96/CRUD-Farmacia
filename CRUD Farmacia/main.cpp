@@ -7,10 +7,15 @@ using namespace System::Windows::Forms;
 using namespace CRUDFarmacia;
 void main(array<String^>^ args)
 {
-	Application::EnableVisualStyles();
-	Application::SetCompatibleTextRenderingDefault(false);
-	CRUDFarmacia::main form;
-	Application::Run(% form);
+	try {
+		Application::EnableVisualStyles();
+		Application::SetCompatibleTextRenderingDefault(false);
+		CRUDFarmacia::main form;
+		Application::Run(% form);
+	}
+	catch (...) {
+
+	}
 }
 //Despliega los datos de los proveedores
 void main::desplegarProveedores() {
@@ -94,7 +99,7 @@ System::Void main::btn_agregar_Click(System::Object^ sender, System::EventArgs^ 
 			categoría,
 			tB_principio->Text,
 			validarDouble(tB_dosis->Text),
-			System::Convert::ToInt32(tB_stock->Text),
+			System::Convert::ToInt32(tB_stock->Text->Replace(' ', '0')),
 			sistema.getProveedor(System::Convert::ToInt16(dgv_proveedor->CurrentRow->Cells[6]->Value)),
 			dT_caducidad->Value.ToString(),
 			validarDouble(tB_compra->Text),
@@ -135,4 +140,71 @@ System::Void main::dgv_medicamento_CellClick(System::Object^ sender, System::Win
 	desplegarInventario(
 		sistema.getInventario(
 		System::Convert::ToInt32(dgv_medicamento->CurrentRow->Cells[1]->Value)));
+}
+//Muestra el panel para que el usuario ingrese el medicamento a buscar
+System::Void main::btn_inventario_Click(System::Object^ sender, System::EventArgs^ e) {
+	pl_inventario->Visible = true;
+	pl_inventario->Location = btn_inventario->Location;
+}
+//Cierra el panel para buscar medicamento por nombre
+System::Void main::pl_inventario_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e) {
+	pl_inventario->Visible = false;
+	pl_inventario_tB_nombre->Text = "";
+}
+//Busca el inventario del medicamento a partir de su nombre y luego despliega el inventario
+System::Void main::pl_inventario_btn_mostrar_Click(System::Object^ sender, System::EventArgs^ e) {
+	try {
+		Inventario^ inventario = sistema.getInventario(pl_inventario_tB_nombre->Text);
+		desplegarInventario(inventario);
+		pl_inventario->Visible = false;
+		pl_inventario_tB_nombre->Text = "";
+	}
+	catch (...) {
+		MessageBox::Show("Medicamento no encontrado");
+	}
+}
+//Muestra el panel para buscar el medicamento a partir del nombre o principio activo
+System::Void main::btn_buscar_Click(System::Object^ sender, System::EventArgs^ e) {
+	pl_buscar->Visible = true;
+	pl_buscar->Location = btn_buscar->Location;
+	pl_buscar_tB_nombre->Text = "";
+	pl_buscar_tB_principio->Text = "";
+}
+//Cierra el panel de busqueda
+System::Void main::pl_buscar_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e) {
+	pl_buscar->Visible = false;
+}
+//Busca el medicamento a partir de su nombre
+System::Void main::pl_buscar_btn_nombre_Click(System::Object^ sender, System::EventArgs^ e) {
+	try
+	{
+		Inventario^ medicamento = sistema.getInventario(pl_buscar_tB_nombre->Text);
+		MessageBox::Show(
+			"Nombre: " + medicamento->getNombre() + 
+			"\nNumero de registro: " + medicamento->getNumRegistro() + 
+			"\nCategoría: " + (medicamento->getCategoría() == 0 ? "Venta libre" : "Venta con receta") +
+			"\nPrincipios activos: " + medicamento->getPrincipiosActivos() + 
+			"\nDosis recomendada: " + medicamento->getDosisMg() + "mg");
+	}
+	catch (...)
+	{
+		MessageBox::Show("Medicamento no encontrado");
+	}
+}
+//Busca el medicamento a partir de su principio activo
+System::Void main::pl_buscar_btn_principio_Click(System::Object^ sender, System::EventArgs^ e) {
+	try
+	{
+		Inventario^ medicamento = sistema.getInventarioPrincipio(pl_buscar_tB_principio->Text);
+		MessageBox::Show(
+			"Nombre: " + medicamento->getNombre() +
+			"\nNumero de registro: " + medicamento->getNumRegistro() +
+			"\nCategoría: " + (medicamento->getCategoría() == 0 ? "Venta libre" : "Venta con receta") +
+			"\nPrincipios activos: " + medicamento->getPrincipiosActivos() +
+			"\nDosis recomendada: " + medicamento->getDosisMg() + "mg");
+	}
+	catch (...)
+	{
+		MessageBox::Show("Medicamento no encontrado");
+	}
 }
