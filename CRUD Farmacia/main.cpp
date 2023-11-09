@@ -112,6 +112,12 @@ System::Void main::btn_agregar_Click(System::Object^ sender, System::EventArgs^ 
 			inventario->getPrincipiosActivos(),
 			inventario->getDosisMg()
 		);
+		sistema.añadirMedicamentoAProveedor(gcnew Medicamento(
+			tB_nombre->Text,
+			categoría,
+			validarDouble(tB_dosis->Text),
+			tB_principio->Text
+		), System::Convert::ToInt16(dgv_proveedor->CurrentRow->Cells[6]->Value));
 	}
 	catch (...)
 	{
