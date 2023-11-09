@@ -214,3 +214,32 @@ System::Void main::pl_buscar_btn_principio_Click(System::Object^ sender, System:
 		MessageBox::Show("Medicamento no encontrado");
 	}
 }
+
+//Muestra el panel para crear un informe
+System::Void main::btn_informe_Click(System::Object^ sender, System::EventArgs^ e) {
+	pl_informe->Visible = true;
+	pl_informe_tB_nombre->Text = "";
+}
+//Guarda los datos ingresados a un csv
+System::Void main::pl_informe_btn_guardar_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (sistema.inventarioVacio()) {
+		MessageBox::Show("El inventario está vació");
+		return;
+	}
+	if (System::String::Compare(pl_informe_tB_nombre->Text, "") == 0) {
+		MessageBox::Show("Favor ingresar el nombre del archivo");
+		return;
+	}
+	try {
+		msclr::interop::marshal_context context;
+		sistema.generarInforme(context.marshal_as<std::string>(pl_informe_tB_nombre->Text));
+		MessageBox::Show("Se han guardado los datos en un archivo CSV");
+	}
+	catch (...) {
+		MessageBox::Show("No se ha logrado guardar los datos");
+	}
+}
+//Cierra el panel del informe
+System::Void main::pl_informe_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e) {
+	pl_informe->Visible = false;
+}

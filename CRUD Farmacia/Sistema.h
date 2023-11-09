@@ -1,6 +1,7 @@
 #pragma once
 #include "Inventario.h"
 #include "Lista.h"
+#include <string>
 
 ref class Sistema {
 private:
@@ -22,4 +23,6 @@ public:
 	Inventario^ getInventario(System::String^ nombre);
 	Inventario^ getInventarioPrincipio(System::String^ principio);
 	void añadirMedicamentoAProveedor(Medicamento^ medicamento, int index);
+	void generarInforme(std::string nombre);
+	int inventarioVacio();
 };

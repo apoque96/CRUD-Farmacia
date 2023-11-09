@@ -55,3 +55,11 @@ Inventario^ Sistema::getInventarioPrincipio(System::String^ principio) {
 void Sistema::añadirMedicamentoAProveedor(Medicamento^ medicamento, int index) {
 	listaProveedores.GetNodeVal(listaProveedores.Get(index))->agregarMedicamento(medicamento);
 }
+
+void Sistema::generarInforme(std::string nombre) {
+	listaInventario.escribirCSV(nombre);
+}
+
+int Sistema::inventarioVacio() {
+	return listaInventario.Size() == 0 ? true : false;
+}
