@@ -22,4 +22,5 @@ public:
 	System::String^ getCorreo();
 	int getId();
 	void agregarMedicamento(Medicamento^ medicamento);
+	void filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv);
 };

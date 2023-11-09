@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <msclr\marshal_cppstd.h>
+#include "Filtrar.h"
 
 namespace CRUDFarmacia {
 
@@ -765,6 +766,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			this->btn_filtrar->TabIndex = 35;
 			this->btn_filtrar->Text = L"Filtrar";
 			this->btn_filtrar->UseVisualStyleBackColor = true;
+			this->btn_filtrar->Click += gcnew System::EventHandler(this, &main::btn_filtrar_Click);
 			// 
 			// pl_buscar
 			// 
@@ -949,9 +951,11 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 #pragma endregion
 		
 		//Contiene todos los metodos y las variables del sistema
-		Sistema sistema;
+		Sistema^ sistema = gcnew Sistema();
 		//Categoría seleccionada
 		Clasificación categoría = ventaLibre;
+		//Form para filtrar medicamentos
+		Filtrar^ formFiltrado;
 
 		void desplegarProveedores();
 		void desplegarInventario(Inventario^ inventario);
@@ -991,6 +995,8 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 		private: System::Void pl_informe_btn_guardar_Click(System::Object^ sender, System::EventArgs^ e);
 		//Cierra el panel del informe
 		private: System::Void pl_informe_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Abre el form utilizado para mostrar los medicamentos con un filtro dado
+		private: System::Void btn_filtrar_Click(System::Object^ sender, System::EventArgs^ e);
 #pragma endregion
 	};
 }

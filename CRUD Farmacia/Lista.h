@@ -199,7 +199,45 @@ public:
 		}
 		archivo.close();
 	}
+	
+	//Muestra los datos en el DGV de filtrado cuando se filtra por proveedores
+	//Nora: utilizar solo con listas de proveedores
+	void filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv) {
+		Node<T>^ current = head;
+		while (current) {
+			auto val = current->val;
+			dgv->Rows->Add(
+				val->getNombre(),
+				val->getNumRegistro(),
+				val->getCategoría() == 0 ? "Venta Libre" : "Venta Receta",
+				val->getPrincipiosActivos(),
+				val->getDosisMg()
+			);
+			current = current->next;
+		}
+	}
 
+	//Muestra los datos en el DGV de filtrado cuando se filtra por categoría
+	//Nora: utilizar solo con listas de Inventario
+	void filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría) {
+		//0 = ventaLibre, 1 = ventaReceta
+		Node<T>^ current = head;
+		while (current) {
+			auto val = current->val;
+			if (val->getCategoría() != categoría) {
+				current = current->next;
+				continue;
+			}
+			dgv->Rows->Add(
+				val->getNombre(),
+				val->getNumRegistro(),
+				val->getCategoría() == 0 ? "Venta Libre" : "Venta Receta",
+				val->getPrincipiosActivos(),
+				val->getDosisMg()
+			);
+			current = current->next;
+		}
+	}
 #pragma region Sort
 	void swap(Node<T>^ a, Node<T>^ b) {
 		T^ temp = a->val;

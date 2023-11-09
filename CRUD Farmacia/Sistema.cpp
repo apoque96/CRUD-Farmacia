@@ -63,3 +63,11 @@ void Sistema::generarInforme(std::string nombre) {
 int Sistema::inventarioVacio() {
 	return listaInventario.Size() == 0 ? true : false;
 }
+
+void Sistema::filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv, int index) {
+	listaProveedores.GetNodeVal(listaProveedores.Get(index))->filtrarPorProveedor(dgv);
+}
+
+void Sistema::filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría) {
+	listaInventario.filtrarPorCategoría(dgv, categoría);
+}
