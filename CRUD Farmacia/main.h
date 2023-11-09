@@ -1,5 +1,9 @@
 #pragma once
 #include "Sistema.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <msclr\marshal_cppstd.h>
 
 namespace CRUDFarmacia {
 
@@ -155,6 +159,13 @@ private: System::Windows::Forms::Button^ pl_buscar_btn_principio;
 private: System::Windows::Forms::TextBox^ pl_buscar_tB_principio;
 
 private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
+private: System::Windows::Forms::Panel^ pl_informe;
+private: System::Windows::Forms::Button^ pl_informe_btn_cerrar;
+
+private: System::Windows::Forms::Button^ pl_informe_btn_guardar;
+private: System::Windows::Forms::TextBox^ pl_informe_tB_nombre;
+
+private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 
 
 
@@ -251,19 +262,25 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->pl_inventario_lbl_nombre = (gcnew System::Windows::Forms::Label());
 			this->btn_filtrar = (gcnew System::Windows::Forms::Button());
 			this->pl_buscar = (gcnew System::Windows::Forms::Panel());
+			this->pl_buscar_btn_principio = (gcnew System::Windows::Forms::Button());
+			this->pl_buscar_tB_principio = (gcnew System::Windows::Forms::TextBox());
+			this->pl_buscar_lbl_principio = (gcnew System::Windows::Forms::Label());
 			this->pl_buscar_btn_cerrar = (gcnew System::Windows::Forms::Button());
 			this->pl_buscar_btn_nombre = (gcnew System::Windows::Forms::Button());
 			this->pl_buscar_tB_nombre = (gcnew System::Windows::Forms::TextBox());
 			this->pl_buscar_lbl_nombre = (gcnew System::Windows::Forms::Label());
-			this->pl_buscar_tB_principio = (gcnew System::Windows::Forms::TextBox());
-			this->pl_buscar_lbl_principio = (gcnew System::Windows::Forms::Label());
-			this->pl_buscar_btn_principio = (gcnew System::Windows::Forms::Button());
+			this->pl_informe = (gcnew System::Windows::Forms::Panel());
+			this->pl_informe_btn_cerrar = (gcnew System::Windows::Forms::Button());
+			this->pl_informe_btn_guardar = (gcnew System::Windows::Forms::Button());
+			this->pl_informe_tB_nombre = (gcnew System::Windows::Forms::TextBox());
+			this->pl_informe_lbl_nombre = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_medicamento))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_inventario))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_proveedor))->BeginInit();
 			this->pl_proveedores->SuspendLayout();
 			this->pl_inventario->SuspendLayout();
 			this->pl_buscar->SuspendLayout();
+			this->pl_informe->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// dgv_medicamento
@@ -394,6 +411,7 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->btn_informe->TabIndex = 4;
 			this->btn_informe->Text = L"Informe";
 			this->btn_informe->UseVisualStyleBackColor = true;
+			this->btn_informe->Click += gcnew System::EventHandler(this, &main::btn_informe_Click);
 			// 
 			// btn_promedio
 			// 
@@ -763,6 +781,32 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->pl_buscar->TabIndex = 37;
 			this->pl_buscar->Visible = false;
 			// 
+			// pl_buscar_btn_principio
+			// 
+			this->pl_buscar_btn_principio->Location = System::Drawing::Point(146, 56);
+			this->pl_buscar_btn_principio->Name = L"pl_buscar_btn_principio";
+			this->pl_buscar_btn_principio->Size = System::Drawing::Size(75, 31);
+			this->pl_buscar_btn_principio->TabIndex = 39;
+			this->pl_buscar_btn_principio->Text = L"Principio";
+			this->pl_buscar_btn_principio->UseVisualStyleBackColor = true;
+			this->pl_buscar_btn_principio->Click += gcnew System::EventHandler(this, &main::pl_buscar_btn_principio_Click);
+			// 
+			// pl_buscar_tB_principio
+			// 
+			this->pl_buscar_tB_principio->Location = System::Drawing::Point(132, 30);
+			this->pl_buscar_tB_principio->Name = L"pl_buscar_tB_principio";
+			this->pl_buscar_tB_principio->Size = System::Drawing::Size(100, 20);
+			this->pl_buscar_tB_principio->TabIndex = 38;
+			// 
+			// pl_buscar_lbl_principio
+			// 
+			this->pl_buscar_lbl_principio->AutoSize = true;
+			this->pl_buscar_lbl_principio->Location = System::Drawing::Point(163, 14);
+			this->pl_buscar_lbl_principio->Name = L"pl_buscar_lbl_principio";
+			this->pl_buscar_lbl_principio->Size = System::Drawing::Size(47, 13);
+			this->pl_buscar_lbl_principio->TabIndex = 37;
+			this->pl_buscar_lbl_principio->Text = L"Principio";
+			// 
 			// pl_buscar_btn_cerrar
 			// 
 			this->pl_buscar_btn_cerrar->Location = System::Drawing::Point(81, 87);
@@ -799,37 +843,60 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->pl_buscar_lbl_nombre->TabIndex = 0;
 			this->pl_buscar_lbl_nombre->Text = L"Nombre";
 			// 
-			// pl_buscar_tB_principio
+			// pl_informe
 			// 
-			this->pl_buscar_tB_principio->Location = System::Drawing::Point(132, 30);
-			this->pl_buscar_tB_principio->Name = L"pl_buscar_tB_principio";
-			this->pl_buscar_tB_principio->Size = System::Drawing::Size(100, 20);
-			this->pl_buscar_tB_principio->TabIndex = 38;
+			this->pl_informe->Controls->Add(this->pl_informe_btn_cerrar);
+			this->pl_informe->Controls->Add(this->pl_informe_btn_guardar);
+			this->pl_informe->Controls->Add(this->pl_informe_tB_nombre);
+			this->pl_informe->Controls->Add(this->pl_informe_lbl_nombre);
+			this->pl_informe->Location = System::Drawing::Point(653, 21);
+			this->pl_informe->Name = L"pl_informe";
+			this->pl_informe->Size = System::Drawing::Size(200, 121);
+			this->pl_informe->TabIndex = 37;
+			this->pl_informe->Visible = false;
 			// 
-			// pl_buscar_lbl_principio
+			// pl_informe_btn_cerrar
 			// 
-			this->pl_buscar_lbl_principio->AutoSize = true;
-			this->pl_buscar_lbl_principio->Location = System::Drawing::Point(163, 14);
-			this->pl_buscar_lbl_principio->Name = L"pl_buscar_lbl_principio";
-			this->pl_buscar_lbl_principio->Size = System::Drawing::Size(47, 13);
-			this->pl_buscar_lbl_principio->TabIndex = 37;
-			this->pl_buscar_lbl_principio->Text = L"Principio";
+			this->pl_informe_btn_cerrar->Location = System::Drawing::Point(55, 87);
+			this->pl_informe_btn_cerrar->Name = L"pl_informe_btn_cerrar";
+			this->pl_informe_btn_cerrar->Size = System::Drawing::Size(75, 31);
+			this->pl_informe_btn_cerrar->TabIndex = 36;
+			this->pl_informe_btn_cerrar->Text = L"cerrar";
+			this->pl_informe_btn_cerrar->UseVisualStyleBackColor = true;
+			this->pl_informe_btn_cerrar->Click += gcnew System::EventHandler(this, &main::pl_informe_btn_cerrar_Click);
 			// 
-			// pl_buscar_btn_principio
+			// pl_informe_btn_guardar
 			// 
-			this->pl_buscar_btn_principio->Location = System::Drawing::Point(146, 56);
-			this->pl_buscar_btn_principio->Name = L"pl_buscar_btn_principio";
-			this->pl_buscar_btn_principio->Size = System::Drawing::Size(75, 31);
-			this->pl_buscar_btn_principio->TabIndex = 39;
-			this->pl_buscar_btn_principio->Text = L"Principio";
-			this->pl_buscar_btn_principio->UseVisualStyleBackColor = true;
-			this->pl_buscar_btn_principio->Click += gcnew System::EventHandler(this, &main::pl_buscar_btn_principio_Click);
+			this->pl_informe_btn_guardar->Location = System::Drawing::Point(55, 56);
+			this->pl_informe_btn_guardar->Name = L"pl_informe_btn_guardar";
+			this->pl_informe_btn_guardar->Size = System::Drawing::Size(75, 31);
+			this->pl_informe_btn_guardar->TabIndex = 35;
+			this->pl_informe_btn_guardar->Text = L"guardar";
+			this->pl_informe_btn_guardar->UseVisualStyleBackColor = true;
+			this->pl_informe_btn_guardar->Click += gcnew System::EventHandler(this, &main::pl_informe_btn_guardar_Click);
+			// 
+			// pl_informe_tB_nombre
+			// 
+			this->pl_informe_tB_nombre->Location = System::Drawing::Point(44, 30);
+			this->pl_informe_tB_nombre->Name = L"pl_informe_tB_nombre";
+			this->pl_informe_tB_nombre->Size = System::Drawing::Size(100, 20);
+			this->pl_informe_tB_nombre->TabIndex = 35;
+			// 
+			// pl_informe_lbl_nombre
+			// 
+			this->pl_informe_lbl_nombre->AutoSize = true;
+			this->pl_informe_lbl_nombre->Location = System::Drawing::Point(45, 14);
+			this->pl_informe_lbl_nombre->Name = L"pl_informe_lbl_nombre";
+			this->pl_informe_lbl_nombre->Size = System::Drawing::Size(99, 13);
+			this->pl_informe_lbl_nombre->TabIndex = 0;
+			this->pl_informe_lbl_nombre->Text = L"Nombre del archivo";
 			// 
 			// main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(980, 427);
+			this->Controls->Add(this->pl_informe);
 			this->Controls->Add(this->pl_buscar);
 			this->Controls->Add(this->btn_filtrar);
 			this->Controls->Add(this->pl_inventario);
@@ -873,6 +940,8 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->pl_inventario->PerformLayout();
 			this->pl_buscar->ResumeLayout(false);
 			this->pl_buscar->PerformLayout();
+			this->pl_informe->ResumeLayout(false);
+			this->pl_informe->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -916,6 +985,12 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 		private: System::Void pl_buscar_btn_nombre_Click(System::Object^ sender, System::EventArgs^ e);
 		//Busca el medicamento a partir de su principio activo
 		private: System::Void pl_buscar_btn_principio_Click(System::Object^ sender, System::EventArgs^ e);
+		//Muestra el panel para crear un informe
+		private: System::Void btn_informe_Click(System::Object^ sender, System::EventArgs^ e);
+		//Guarda los datos ingresados a un csv
+		private: System::Void pl_informe_btn_guardar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Cierra el panel del informe
+		private: System::Void pl_informe_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
 #pragma endregion
 	};
 }

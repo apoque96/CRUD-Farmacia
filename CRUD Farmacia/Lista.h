@@ -1,4 +1,8 @@
 #pragma once
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <msclr\marshal_cppstd.h>
 template <class T>
 ref class Lista {
 private:
@@ -140,12 +144,60 @@ public:
 		throw 0;
 	}
 
+	//Obtiene el nodo al que apunta del nodo dado
+	Node<T>^ nextNode(Node<T>^ node) {
+		if (node) return node->next;
+		return nullptr;
+	}
+
 	bool isEmpty() {
 		return size == 0;
 	}
 
 	int Size() {
 		return size;
+	}
+
+	//Escribe los datos a un archivo CSV
+	//Nota: utilizar solo con listas de inventario
+	void escribirCSV(std::string nombre) {
+		std::ofstream archivo(nombre + ".csv");
+
+		archivo << "Medicamento" << "," << "Número de registro" << "," << "Categoría" << "," <<
+			"Principios activos" << "," << "Dosis recomendada(mg)" << "," << "Stock" << "," <<
+			"Fecha de caducidad" << "," << "Proveedor" << "," << "Precio de compra" << "," <<
+			"Precio de venta" << '\n';
+
+		Node<T>^ current = head;
+		msclr::interop::marshal_context context;
+		//Cli be like
+		std::string Nombre;
+		std::string registro;
+		std::string categoria;
+		std::string principio;
+		std::string dosis;
+		std::string cantidad;
+		std::string caducidad;
+		std::string proveedor;
+		std::string compra;
+		std::string venta;
+		while (current) {
+			Nombre = context.marshal_as<std::string>(current->val->getNombre());
+			registro = context.marshal_as<std::string>(current->val->getNumRegistro().ToString());
+			categoria = current->val->getCategoría() == 0 ? "Venta Libre" : "Venta Receta";
+			principio = context.marshal_as<std::string>(current->val->getPrincipiosActivos());
+			dosis = context.marshal_as<std::string>(current->val->getDosisMg().ToString());
+			cantidad = context.marshal_as<std::string>(current->val->getCantidad().ToString());
+			caducidad = context.marshal_as<std::string>(current->val->getCaducidad());
+			proveedor = context.marshal_as<std::string>(current->val->getProveedor()->getNombre());
+			compra = context.marshal_as<std::string>(current->val->getCompra().ToString());
+			venta = context.marshal_as<std::string>(current->val->getVenta().ToString());
+			archivo << Nombre << ',' << registro << ',' << categoria << ',' << principio << ',' <<
+				dosis << ',' << cantidad << ',' << caducidad << ',' << proveedor << ',' << compra <<
+				',' << venta << '\n';
+			current = current->next;
+		}
+		archivo.close();
 	}
 
 #pragma region Sort
