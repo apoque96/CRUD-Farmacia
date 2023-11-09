@@ -1,5 +1,6 @@
 #pragma once
 #include "main.h"
+#include "Filtrar.h"
 #include <iostream>
 
 using namespace System;
@@ -21,7 +22,7 @@ void main(array<String^>^ args)
 void main::desplegarProveedores() {
 	Proveedor^ temp;
 	for (int i = 0; i < 4; i++) {
-		temp = sistema.getProveedor(i);
+		temp = sistema->getProveedor(i);
 		dgv_proveedor->Rows->Add(
 			temp->getNombre(),
 			temp->getNit(),
@@ -47,7 +48,7 @@ void main::desplegarInventario(Inventario^ inventario) {
 }
 //Llena el dataGridView con los 4 proveedores
 System::Void main::main_Load(System::Object^ sender, System::EventArgs^ e) {
-	sistema.añadirProveedor(gcnew Proveedor(
+	sistema->añadirProveedor(gcnew Proveedor(
 		"Farmacia Salud Total",
 		1234567,
 		"Calle Principal #123",
@@ -56,7 +57,7 @@ System::Void main::main_Load(System::Object^ sender, System::EventArgs^ e) {
 		"info@farmaciasaludtotal.com",
 		0
 	));
-	sistema.añadirProveedor(gcnew Proveedor(
+	sistema->añadirProveedor(gcnew Proveedor(
 		"Distribuidora Farmacéutica Sanitex",
 		9876543,
 		"Calle Comercial #789",
@@ -65,7 +66,7 @@ System::Void main::main_Load(System::Object^ sender, System::EventArgs^ e) {
 		"contacto@sanitexpharma.com",
 		1
 	));
-	sistema.añadirProveedor(gcnew Proveedor(
+	sistema->añadirProveedor(gcnew Proveedor(
 		"Farmacias EconoSalud",
 		5432101,
 		"Avenida Principal #987",
@@ -74,7 +75,7 @@ System::Void main::main_Load(System::Object^ sender, System::EventArgs^ e) {
 		"ventas@econosaludfarmacias.com",
 		2
 	));
-	sistema.añadirProveedor(gcnew Proveedor(
+	sistema->añadirProveedor(gcnew Proveedor(
 		"Distribuidora Farmacéutica VitalCare",
 		6543218,
 		"Calle de la Salud #234",
@@ -100,11 +101,11 @@ System::Void main::btn_agregar_Click(System::Object^ sender, System::EventArgs^ 
 			tB_principio->Text,
 			validarDouble(tB_dosis->Text),
 			System::Convert::ToInt32(tB_stock->Text->Replace(' ', '0')),
-			sistema.getProveedor(System::Convert::ToInt16(dgv_proveedor->CurrentRow->Cells[6]->Value)),
+			sistema->getProveedor(System::Convert::ToInt16(dgv_proveedor->CurrentRow->Cells[6]->Value)),
 			dT_caducidad->Value.ToString(),
 			validarDouble(tB_compra->Text),
 			validarDouble(tB_venta->Text));
-			sistema.añadirInventario(inventario);
+			sistema->añadirInventario(inventario);
 		dgv_medicamento->Rows->Add(
 			inventario->getNombre(),
 			inventario->getNumRegistro(),
@@ -112,7 +113,7 @@ System::Void main::btn_agregar_Click(System::Object^ sender, System::EventArgs^ 
 			inventario->getPrincipiosActivos(),
 			inventario->getDosisMg()
 		);
-		sistema.añadirMedicamentoAProveedor(gcnew Medicamento(
+		sistema->añadirMedicamentoAProveedor(gcnew Medicamento(
 			tB_nombre->Text,
 			categoría,
 			validarDouble(tB_dosis->Text),
@@ -144,7 +145,7 @@ System::Void main::rB_receta_Click(System::Object^ sender, System::EventArgs^ e)
 //Despliega los datos de inventario del medicamento seleccionado
 System::Void main::dgv_medicamento_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	desplegarInventario(
-		sistema.getInventario(
+		sistema->getInventario(
 		System::Convert::ToInt32(dgv_medicamento->CurrentRow->Cells[1]->Value)));
 }
 //Muestra el panel para que el usuario ingrese el medicamento a buscar
@@ -160,7 +161,7 @@ System::Void main::pl_inventario_btn_cerrar_Click(System::Object^ sender, System
 //Busca el inventario del medicamento a partir de su nombre y luego despliega el inventario
 System::Void main::pl_inventario_btn_mostrar_Click(System::Object^ sender, System::EventArgs^ e) {
 	try {
-		Inventario^ inventario = sistema.getInventario(pl_inventario_tB_nombre->Text);
+		Inventario^ inventario = sistema->getInventario(pl_inventario_tB_nombre->Text);
 		desplegarInventario(inventario);
 		pl_inventario->Visible = false;
 		pl_inventario_tB_nombre->Text = "";
@@ -184,7 +185,7 @@ System::Void main::pl_buscar_btn_cerrar_Click(System::Object^ sender, System::Ev
 System::Void main::pl_buscar_btn_nombre_Click(System::Object^ sender, System::EventArgs^ e) {
 	try
 	{
-		Inventario^ medicamento = sistema.getInventario(pl_buscar_tB_nombre->Text);
+		Inventario^ medicamento = sistema->getInventario(pl_buscar_tB_nombre->Text);
 		MessageBox::Show(
 			"Nombre: " + medicamento->getNombre() + 
 			"\nNumero de registro: " + medicamento->getNumRegistro() + 
@@ -201,7 +202,7 @@ System::Void main::pl_buscar_btn_nombre_Click(System::Object^ sender, System::Ev
 System::Void main::pl_buscar_btn_principio_Click(System::Object^ sender, System::EventArgs^ e) {
 	try
 	{
-		Inventario^ medicamento = sistema.getInventarioPrincipio(pl_buscar_tB_principio->Text);
+		Inventario^ medicamento = sistema->getInventarioPrincipio(pl_buscar_tB_principio->Text);
 		MessageBox::Show(
 			"Nombre: " + medicamento->getNombre() +
 			"\nNumero de registro: " + medicamento->getNumRegistro() +
@@ -222,7 +223,7 @@ System::Void main::btn_informe_Click(System::Object^ sender, System::EventArgs^ 
 }
 //Guarda los datos ingresados a un csv
 System::Void main::pl_informe_btn_guardar_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (sistema.inventarioVacio()) {
+	if (sistema->inventarioVacio()) {
 		MessageBox::Show("El inventario está vació");
 		return;
 	}
@@ -232,7 +233,7 @@ System::Void main::pl_informe_btn_guardar_Click(System::Object^ sender, System::
 	}
 	try {
 		msclr::interop::marshal_context context;
-		sistema.generarInforme(context.marshal_as<std::string>(pl_informe_tB_nombre->Text));
+		sistema->generarInforme(context.marshal_as<std::string>(pl_informe_tB_nombre->Text));
 		MessageBox::Show("Se han guardado los datos en un archivo CSV");
 	}
 	catch (...) {
@@ -242,4 +243,10 @@ System::Void main::pl_informe_btn_guardar_Click(System::Object^ sender, System::
 //Cierra el panel del informe
 System::Void main::pl_informe_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e) {
 	pl_informe->Visible = false;
+}
+//Abre el form utilizado para mostrar los medicamentos con un filtro dado
+System::Void main::btn_filtrar_Click(System::Object^ sender, System::EventArgs^ e) {
+	formFiltrado = gcnew Filtrar();
+	formFiltrado->Show();
+	formFiltrado->pasarSistema(sistema);
 }

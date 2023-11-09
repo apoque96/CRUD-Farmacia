@@ -37,3 +37,7 @@ int Proveedor::getId() {
 void Proveedor::agregarMedicamento(Medicamento^ medicamento) {
 	listaMedicamentos.Add(medicamento);
 }
+
+void Proveedor::filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv) {
+	listaMedicamentos.filtrarPorProveedor(dgv);
+}
