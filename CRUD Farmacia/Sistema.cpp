@@ -80,7 +80,13 @@ int Sistema::inventarioVacio() {
 void Sistema::filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv, int index) {
 	listaProveedores.GetNodeVal(listaProveedores.Get(index))->filtrarPorProveedor(dgv);
 }
+void Sistema::filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría) {
+	listaInventario.filtrarPorCategoría(dgv, categoría);
+}
 
+void Sistema::sort() {
+	listaInventario.sort();
+}
 void Sistema::filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría) {
 	listaInventario.filtrarPorCategoría(dgv, categoría);
 }

@@ -281,16 +281,16 @@ public:
 
 #pragma region Sort
 	void swap(Node<T>^ a, Node<T>^ b) {
-		T^ temp = a->val;
+		T temp = a->val;
 		a->val = b->val;
-		b->val = a->val;
+		b->val = temp;
 	}
 
 	Node<T>^ partition(Node<T>^ low, Node<T>^ high) {
-		T^ pivot = high->val;
+		T pivot = high->val;
 		Node<T>^ i = low->prev;
 		for (Node<T>^ j = low; j != high; j = j->next) {
-			if (pivot > j->val) {
+			if (System::String::Compare(pivot->getNombre(), j->val->getNombre()) > 0) {
 				if (i) i = i->next;
 				else i = low;
 				swap(i, j);
@@ -308,6 +308,8 @@ public:
 			quickSort(pivot->next, high);
 		}
 	}
-
+	void sort(){
+		quickSort(head, tail);
+	}
 #pragma endregion
 };

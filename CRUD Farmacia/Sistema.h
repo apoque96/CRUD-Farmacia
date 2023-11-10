@@ -30,5 +30,6 @@ public:
 	//El unico motivo por el cual esta función devuelve int, es porque con bool me salía un error raro
 	int inventarioVacio();
 	void filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv, int index);
+	void sort();
 	void filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría);
 };
