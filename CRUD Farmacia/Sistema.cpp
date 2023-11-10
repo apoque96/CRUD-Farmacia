@@ -55,3 +55,13 @@ Inventario^ Sistema::getInventarioPrincipio(System::String^ principio) {
 	return listaInventario.GetNodeVal(listaInventario.GetMedicamentoPrincipio(principio));
 }
 
+double Sistema::getPromC()
+{
+	return listaInventario.promC();
+}
+
+double Sistema::getPromV()
+{
+	return listaInventario.promV();
+}
+

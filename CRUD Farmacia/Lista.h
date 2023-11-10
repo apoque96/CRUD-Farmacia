@@ -147,6 +147,48 @@ public:
 		return size;
 	}
 
+	double promC() {
+		int n = 0;
+		Node<T>^ nodeAcutal;
+		int sum = 0;
+
+		if (head == nullptr) {
+			return 0;
+		}
+		else {
+			nodeAcutal = head;
+			while (nodeAcutal != nullptr)
+			{
+				sum += nodeAcutal->val->getCompra();
+				nodeAcutal = nodeAcutal->next;
+				n++;
+			}
+		}
+		return sum / n;
+	}
+	
+	double promV() {
+		int n = 0;
+		Node<T>^ nodeAcutal;
+		int sum = 0;
+
+		if (head == nullptr) {
+			return 0;
+		}
+		else {
+			nodeAcutal = head;
+			while (nodeAcutal != nullptr)
+			{
+				sum += nodeAcutal->val->getVenta();
+				nodeAcutal = nodeAcutal->next;
+				n++;
+			}
+		}
+		return sum/n;
+	}
+
+	
+
 #pragma region Sort
 	void swap(Node<T>^ a, Node<T>^ b) {
 		T^ temp = a->val;
@@ -176,5 +218,6 @@ public:
 			quickSort(pivot->next, high);
 		}
 	}
+
 #pragma endregion
 };

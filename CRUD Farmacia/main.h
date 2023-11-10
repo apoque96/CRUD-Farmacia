@@ -425,6 +425,7 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->btn_promedio->TabIndex = 5;
 			this->btn_promedio->Text = L"Promedio";
 			this->btn_promedio->UseVisualStyleBackColor = true;
+			this->btn_promedio->Click += gcnew System::EventHandler(this, &main::btn_promedio_Click);
 			// 
 			// btn_precio
 			// 
@@ -956,6 +957,7 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 		void actualizar();
 		void desplegarProveedores();
 		void desplegarInventario(Inventario^ inventario);
+
 		//Llena el dataGridView con los 4 proveedores
 		private: System::Void main_Load(System::Object^ sender, System::EventArgs^ e);
 #pragma region Botones
@@ -1014,5 +1016,11 @@ private: System::Void dgv_inventario_CellDoubleClick(System::Object^ sender, Sys
 		   actualizar();
 	   }
 
+private: System::Void btn_promedio_Click(System::Object^ sender, System::EventArgs^ e) {
+	MessageBox::Show(
+		"Promedio de Venta: " + sistema.getPromV().ToString() +
+		"\nPromedio de Compra " + sistema.getPromC().ToString()
+	);
+}
 };
 }

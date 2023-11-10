@@ -21,4 +21,6 @@ public:
 	Inventario^ getInventario(int index);
 	Inventario^ getInventario(System::String^ nombre);
 	Inventario^ getInventarioPrincipio(System::String^ principio);
+	double Sistema::getPromC();
+	double Sistema::getPromV();
 };
