@@ -15,19 +15,21 @@ public:
 	void informe();
 	int promedio();
 	void inventarioMedicamento(Inventario^ inventario);
-	double precioMásAlto(Proveedor^ proveedor);
+	double precioMÃ¡sAlto(Proveedor^ proveedor);
 	Medicamento^ buscarCriterio();
-	void añadirProveedor(Proveedor^ proveedor);
+	void aÃ±adirProveedor(Proveedor^ proveedor);
 	Proveedor^ getProveedor(int index);
-	void añadirInventario(Inventario^ inventario);
+	void aÃ±adirInventario(Inventario^ inventario);
 	Inventario^ getInventario(int index);
 	Inventario^ getInventario(System::String^ nombre);
 	Inventario^ getInventarioPrincipio(System::String^ principio);
-	void añadirMedicamentoAProveedor(Medicamento^ medicamento, int index);
+	double Sistema::getPromC();
+	double Sistema::getPromV();
+	void aÃ±adirMedicamentoAProveedor(Medicamento^ medicamento, int index);
 	void generarInforme(std::string nombre);
-	//El unico motivo por el cual esta función devuelve int, es porque con bool me salía un error raro
+	//El unico motivo por el cual esta funciÃ³n devuelve int, es porque con bool me salÃ­a un error raro
 	int inventarioVacio();
 	void filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv, int index);
-	void filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría);
 	void sort();
+	void filtrarPorCategorÃ­a(System::Windows::Forms::DataGridView^ dgv, int categorÃ­a);
 };

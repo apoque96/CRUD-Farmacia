@@ -112,7 +112,7 @@ namespace CRUDFarmacia {
 
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ column_Medicamento;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ registro;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Categoría;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ CategorÃ­a;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Principios;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Dosis;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Stock;
@@ -123,8 +123,8 @@ namespace CRUDFarmacia {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nombre;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nit;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Fiscal;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Dirección;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Teléfono;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ DirecciÃ³n;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TelÃ©fono;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Correo;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
 	private: System::Windows::Forms::Button^ btn_proveedores;
@@ -211,7 +211,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			this->dgv_medicamento = (gcnew System::Windows::Forms::DataGridView());
 			this->column_Medicamento = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->registro = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Categoría = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->CategorÃ­a = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Principios = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Dosis = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->dgv_inventario = (gcnew System::Windows::Forms::DataGridView());
@@ -244,8 +244,8 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Nit = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Fiscal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Dirección = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Teléfono = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->DirecciÃ³n = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->TelÃ©fono = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Correo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->lbl_proveedor = (gcnew System::Windows::Forms::Label());
@@ -291,40 +291,48 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			this->dgv_medicamento->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgv_medicamento->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->column_Medicamento,
-					this->registro, this->Categoría, this->Principios, this->Dosis
+					this->registro, this->CategorÃ­a, this->Principios, this->Dosis
 			});
-			this->dgv_medicamento->Location = System::Drawing::Point(12, 184);
+			this->dgv_medicamento->Location = System::Drawing::Point(18, 283);
+			this->dgv_medicamento->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->dgv_medicamento->Name = L"dgv_medicamento";
 			this->dgv_medicamento->ReadOnly = true;
-			this->dgv_medicamento->Size = System::Drawing::Size(956, 136);
+			this->dgv_medicamento->RowHeadersWidth = 62;
+			this->dgv_medicamento->Size = System::Drawing::Size(1434, 209);
 			this->dgv_medicamento->TabIndex = 0;
-			this->dgv_medicamento->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &main::dgv_medicamento_CellClick);
+			this->dgv_medicamento->CellContentDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &main::dgv_medicamento_CellClick);
+			this->dgv_medicamento->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &main::dgv_medicamento_CellDoubleClick);
+			this->dgv_medicamento->RowHeaderMouseDoubleClick += gcnew System::Windows::Forms::DataGridViewCellMouseEventHandler(this, &main::dgv_medicamento_RowHeaderMouseDoubleClick);
 			// 
 			// column_Medicamento
 			// 
 			this->column_Medicamento->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->column_Medicamento->HeaderText = L"Medicamento";
+			this->column_Medicamento->MinimumWidth = 8;
 			this->column_Medicamento->Name = L"column_Medicamento";
 			this->column_Medicamento->ReadOnly = true;
 			// 
 			// registro
 			// 
 			this->registro->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->registro->HeaderText = L"Número de registro";
+			this->registro->HeaderText = L"NÃºmero de registro";
+			this->registro->MinimumWidth = 8;
 			this->registro->Name = L"registro";
 			this->registro->ReadOnly = true;
 			// 
-			// Categoría
+			// CategorÃ­a
 			// 
-			this->Categoría->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Categoría->HeaderText = L"Categoría";
-			this->Categoría->Name = L"Categoría";
-			this->Categoría->ReadOnly = true;
+			this->CategorÃ­a->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->CategorÃ­a->HeaderText = L"CategorÃ­a";
+			this->CategorÃ­a->MinimumWidth = 8;
+			this->CategorÃ­a->Name = L"CategorÃ­a";
+			this->CategorÃ­a->ReadOnly = true;
 			// 
 			// Principios
 			// 
 			this->Principios->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Principios->HeaderText = L"Principios Activos";
+			this->Principios->MinimumWidth = 8;
 			this->Principios->Name = L"Principios";
 			this->Principios->ReadOnly = true;
 			// 
@@ -332,6 +340,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			this->Dosis->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Dosis->HeaderText = L"Dosis recomendada(mg)";
+			this->Dosis->MinimumWidth = 8;
 			this->Dosis->Name = L"Dosis";
 			this->Dosis->ReadOnly = true;
 			// 
@@ -344,16 +353,20 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 				this->Stock,
 					this->Caducidad, this->column_Proveedor, this->Compra, this->Venta
 			});
-			this->dgv_inventario->Location = System::Drawing::Point(12, 347);
+			this->dgv_inventario->Location = System::Drawing::Point(18, 534);
+			this->dgv_inventario->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->dgv_inventario->Name = L"dgv_inventario";
 			this->dgv_inventario->ReadOnly = true;
-			this->dgv_inventario->Size = System::Drawing::Size(956, 74);
+			this->dgv_inventario->RowHeadersWidth = 62;
+			this->dgv_inventario->Size = System::Drawing::Size(1434, 114);
 			this->dgv_inventario->TabIndex = 1;
+			this->dgv_inventario->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &main::dgv_inventario_CellDoubleClick);
 			// 
 			// Stock
 			// 
 			this->Stock->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Stock->HeaderText = L"Stock";
+			this->Stock->MinimumWidth = 8;
 			this->Stock->Name = L"Stock";
 			this->Stock->ReadOnly = true;
 			// 
@@ -361,6 +374,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			this->Caducidad->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Caducidad->HeaderText = L"Fecha de caducidad";
+			this->Caducidad->MinimumWidth = 8;
 			this->Caducidad->Name = L"Caducidad";
 			this->Caducidad->ReadOnly = true;
 			// 
@@ -368,6 +382,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			this->column_Proveedor->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->column_Proveedor->HeaderText = L"Proveedor";
+			this->column_Proveedor->MinimumWidth = 8;
 			this->column_Proveedor->Name = L"column_Proveedor";
 			this->column_Proveedor->ReadOnly = true;
 			// 
@@ -375,6 +390,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			this->Compra->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Compra->HeaderText = L"Precio de compra";
+			this->Compra->MinimumWidth = 8;
 			this->Compra->Name = L"Compra";
 			this->Compra->ReadOnly = true;
 			// 
@@ -382,14 +398,16 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			this->Venta->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Venta->HeaderText = L"Precio de venta";
+			this->Venta->MinimumWidth = 8;
 			this->Venta->Name = L"Venta";
 			this->Venta->ReadOnly = true;
 			// 
 			// btn_agregar
 			// 
-			this->btn_agregar->Location = System::Drawing::Point(877, 21);
+			this->btn_agregar->Location = System::Drawing::Point(1316, 32);
+			this->btn_agregar->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_agregar->Name = L"btn_agregar";
-			this->btn_agregar->Size = System::Drawing::Size(75, 59);
+			this->btn_agregar->Size = System::Drawing::Size(112, 91);
 			this->btn_agregar->TabIndex = 2;
 			this->btn_agregar->Text = L"Agregar";
 			this->btn_agregar->UseVisualStyleBackColor = true;
@@ -397,18 +415,21 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			// btn_actualizar
 			// 
-			this->btn_actualizar->Location = System::Drawing::Point(877, 103);
+			this->btn_actualizar->Location = System::Drawing::Point(1316, 158);
+			this->btn_actualizar->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_actualizar->Name = L"btn_actualizar";
-			this->btn_actualizar->Size = System::Drawing::Size(75, 59);
+			this->btn_actualizar->Size = System::Drawing::Size(112, 91);
 			this->btn_actualizar->TabIndex = 3;
 			this->btn_actualizar->Text = L"Actualizar";
 			this->btn_actualizar->UseVisualStyleBackColor = true;
+			this->btn_actualizar->Click += gcnew System::EventHandler(this, &main::btn_actualizar_Click);
 			// 
 			// btn_informe
 			// 
-			this->btn_informe->Location = System::Drawing::Point(778, 21);
+			this->btn_informe->Location = System::Drawing::Point(1167, 32);
+			this->btn_informe->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_informe->Name = L"btn_informe";
-			this->btn_informe->Size = System::Drawing::Size(75, 59);
+			this->btn_informe->Size = System::Drawing::Size(112, 91);
 			this->btn_informe->TabIndex = 4;
 			this->btn_informe->Text = L"Informe";
 			this->btn_informe->UseVisualStyleBackColor = true;
@@ -416,27 +437,31 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			// btn_promedio
 			// 
-			this->btn_promedio->Location = System::Drawing::Point(778, 103);
+			this->btn_promedio->Location = System::Drawing::Point(1167, 158);
+			this->btn_promedio->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_promedio->Name = L"btn_promedio";
-			this->btn_promedio->Size = System::Drawing::Size(75, 59);
+			this->btn_promedio->Size = System::Drawing::Size(112, 91);
 			this->btn_promedio->TabIndex = 5;
 			this->btn_promedio->Text = L"Promedio";
 			this->btn_promedio->UseVisualStyleBackColor = true;
+			this->btn_promedio->Click += gcnew System::EventHandler(this, &main::btn_promedio_Click);
 			// 
 			// btn_precio
 			// 
-			this->btn_precio->Location = System::Drawing::Point(681, 21);
+			this->btn_precio->Location = System::Drawing::Point(1022, 32);
+			this->btn_precio->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_precio->Name = L"btn_precio";
-			this->btn_precio->Size = System::Drawing::Size(75, 59);
+			this->btn_precio->Size = System::Drawing::Size(112, 91);
 			this->btn_precio->TabIndex = 6;
-			this->btn_precio->Text = L"Precio más alto";
+			this->btn_precio->Text = L"Precio mÃ¡s alto";
 			this->btn_precio->UseVisualStyleBackColor = true;
 			// 
 			// btn_buscar
 			// 
-			this->btn_buscar->Location = System::Drawing::Point(417, 135);
+			this->btn_buscar->Location = System::Drawing::Point(626, 208);
+			this->btn_buscar->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_buscar->Name = L"btn_buscar";
-			this->btn_buscar->Size = System::Drawing::Size(75, 40);
+			this->btn_buscar->Size = System::Drawing::Size(112, 62);
 			this->btn_buscar->TabIndex = 7;
 			this->btn_buscar->Text = L"Buscar";
 			this->btn_buscar->UseVisualStyleBackColor = true;
@@ -445,120 +470,134 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// lbl_nombre
 			// 
 			this->lbl_nombre->AutoSize = true;
-			this->lbl_nombre->Location = System::Drawing::Point(285, 24);
+			this->lbl_nombre->Location = System::Drawing::Point(428, 37);
+			this->lbl_nombre->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lbl_nombre->Name = L"lbl_nombre";
-			this->lbl_nombre->Size = System::Drawing::Size(44, 13);
+			this->lbl_nombre->Size = System::Drawing::Size(65, 20);
 			this->lbl_nombre->TabIndex = 8;
 			this->lbl_nombre->Text = L"Nombre";
 			// 
 			// dT_caducidad
 			// 
-			this->dT_caducidad->Location = System::Drawing::Point(20, 37);
+			this->dT_caducidad->Location = System::Drawing::Point(30, 57);
+			this->dT_caducidad->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->dT_caducidad->Name = L"dT_caducidad";
-			this->dT_caducidad->Size = System::Drawing::Size(200, 20);
+			this->dT_caducidad->Size = System::Drawing::Size(298, 26);
 			this->dT_caducidad->TabIndex = 9;
 			// 
 			// tB_nombre
 			// 
-			this->tB_nombre->Location = System::Drawing::Point(335, 21);
+			this->tB_nombre->Location = System::Drawing::Point(502, 32);
+			this->tB_nombre->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->tB_nombre->Name = L"tB_nombre";
-			this->tB_nombre->Size = System::Drawing::Size(100, 20);
+			this->tB_nombre->Size = System::Drawing::Size(148, 26);
 			this->tB_nombre->TabIndex = 10;
 			// 
 			// tB_principio
 			// 
-			this->tB_principio->Location = System::Drawing::Point(335, 60);
+			this->tB_principio->Location = System::Drawing::Point(502, 92);
+			this->tB_principio->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->tB_principio->Name = L"tB_principio";
-			this->tB_principio->Size = System::Drawing::Size(100, 20);
+			this->tB_principio->Size = System::Drawing::Size(148, 26);
 			this->tB_principio->TabIndex = 12;
 			// 
 			// lbl_principio
 			// 
 			this->lbl_principio->AutoSize = true;
-			this->lbl_principio->Location = System::Drawing::Point(241, 63);
+			this->lbl_principio->Location = System::Drawing::Point(362, 97);
+			this->lbl_principio->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lbl_principio->Name = L"lbl_principio";
-			this->lbl_principio->Size = System::Drawing::Size(90, 13);
+			this->lbl_principio->Size = System::Drawing::Size(131, 20);
 			this->lbl_principio->TabIndex = 11;
 			this->lbl_principio->Text = L"Principios Activos";
 			// 
 			// lbl_dosis
 			// 
 			this->lbl_dosis->AutoSize = true;
-			this->lbl_dosis->Location = System::Drawing::Point(230, 99);
+			this->lbl_dosis->Location = System::Drawing::Point(345, 152);
+			this->lbl_dosis->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lbl_dosis->Name = L"lbl_dosis";
-			this->lbl_dosis->Size = System::Drawing::Size(101, 13);
+			this->lbl_dosis->Size = System::Drawing::Size(151, 20);
 			this->lbl_dosis->TabIndex = 13;
 			this->lbl_dosis->Text = L"Dosis recomendada";
 			// 
 			// lbl_stock
 			// 
 			this->lbl_stock->AutoSize = true;
-			this->lbl_stock->Location = System::Drawing::Point(513, 24);
+			this->lbl_stock->Location = System::Drawing::Point(770, 37);
+			this->lbl_stock->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lbl_stock->Name = L"lbl_stock";
-			this->lbl_stock->Size = System::Drawing::Size(35, 13);
+			this->lbl_stock->Size = System::Drawing::Size(50, 20);
 			this->lbl_stock->TabIndex = 15;
 			this->lbl_stock->Text = L"Stock";
 			// 
 			// lbl_compra
 			// 
 			this->lbl_compra->AutoSize = true;
-			this->lbl_compra->Location = System::Drawing::Point(458, 63);
+			this->lbl_compra->Location = System::Drawing::Point(687, 97);
+			this->lbl_compra->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lbl_compra->Name = L"lbl_compra";
-			this->lbl_compra->Size = System::Drawing::Size(90, 13);
+			this->lbl_compra->Size = System::Drawing::Size(132, 20);
 			this->lbl_compra->TabIndex = 17;
 			this->lbl_compra->Text = L"Precio de compra";
 			// 
 			// lbl_venta
 			// 
 			this->lbl_venta->AutoSize = true;
-			this->lbl_venta->Location = System::Drawing::Point(458, 99);
+			this->lbl_venta->Location = System::Drawing::Point(687, 152);
+			this->lbl_venta->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lbl_venta->Name = L"lbl_venta";
-			this->lbl_venta->Size = System::Drawing::Size(82, 13);
+			this->lbl_venta->Size = System::Drawing::Size(118, 20);
 			this->lbl_venta->TabIndex = 19;
 			this->lbl_venta->Text = L"Precio de venta";
 			// 
 			// tB_dosis
 			// 
-			this->tB_dosis->Location = System::Drawing::Point(337, 96);
+			this->tB_dosis->Location = System::Drawing::Point(506, 148);
+			this->tB_dosis->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->tB_dosis->Mask = L"000.00";
 			this->tB_dosis->Name = L"tB_dosis";
-			this->tB_dosis->Size = System::Drawing::Size(100, 20);
+			this->tB_dosis->Size = System::Drawing::Size(148, 26);
 			this->tB_dosis->TabIndex = 21;
 			this->tB_dosis->TextMaskFormat = System::Windows::Forms::MaskFormat::IncludePromptAndLiterals;
 			// 
 			// tB_stock
 			// 
-			this->tB_stock->Location = System::Drawing::Point(554, 21);
+			this->tB_stock->Location = System::Drawing::Point(831, 32);
+			this->tB_stock->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->tB_stock->Mask = L"000";
 			this->tB_stock->Name = L"tB_stock";
-			this->tB_stock->Size = System::Drawing::Size(100, 20);
+			this->tB_stock->Size = System::Drawing::Size(148, 26);
 			this->tB_stock->TabIndex = 22;
 			this->tB_stock->ValidatingType = System::Int32::typeid;
 			// 
 			// tB_compra
 			// 
-			this->tB_compra->Location = System::Drawing::Point(554, 60);
+			this->tB_compra->Location = System::Drawing::Point(831, 92);
+			this->tB_compra->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->tB_compra->Mask = L"000.00";
 			this->tB_compra->Name = L"tB_compra";
-			this->tB_compra->Size = System::Drawing::Size(100, 20);
+			this->tB_compra->Size = System::Drawing::Size(148, 26);
 			this->tB_compra->TabIndex = 23;
 			this->tB_compra->TextMaskFormat = System::Windows::Forms::MaskFormat::IncludePromptAndLiterals;
 			// 
 			// tB_venta
 			// 
-			this->tB_venta->Location = System::Drawing::Point(554, 96);
+			this->tB_venta->Location = System::Drawing::Point(831, 148);
+			this->tB_venta->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->tB_venta->Mask = L"000.00";
 			this->tB_venta->Name = L"tB_venta";
-			this->tB_venta->Size = System::Drawing::Size(100, 20);
+			this->tB_venta->Size = System::Drawing::Size(148, 26);
 			this->tB_venta->TabIndex = 24;
 			this->tB_venta->TextMaskFormat = System::Windows::Forms::MaskFormat::IncludePromptAndLiterals;
 			// 
 			// lbl_caducidad
 			// 
 			this->lbl_caducidad->AutoSize = true;
-			this->lbl_caducidad->Location = System::Drawing::Point(69, 21);
+			this->lbl_caducidad->Location = System::Drawing::Point(104, 32);
+			this->lbl_caducidad->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lbl_caducidad->Name = L"lbl_caducidad";
-			this->lbl_caducidad->Size = System::Drawing::Size(105, 13);
+			this->lbl_caducidad->Size = System::Drawing::Size(153, 20);
 			this->lbl_caducidad->TabIndex = 25;
 			this->lbl_caducidad->Text = L"Fecha de caducidad";
 			// 
@@ -569,18 +608,21 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			this->dgv_proveedor->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgv_proveedor->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
 				this->Nombre,
-					this->Nit, this->Fiscal, this->Dirección, this->Teléfono, this->Correo, this->id
+					this->Nit, this->Fiscal, this->DirecciÃ³n, this->TelÃ©fono, this->Correo, this->id
 			});
-			this->dgv_proveedor->Location = System::Drawing::Point(-2, -2);
+			this->dgv_proveedor->Location = System::Drawing::Point(-3, -3);
+			this->dgv_proveedor->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->dgv_proveedor->Name = L"dgv_proveedor";
 			this->dgv_proveedor->ReadOnly = true;
-			this->dgv_proveedor->Size = System::Drawing::Size(642, 259);
+			this->dgv_proveedor->RowHeadersWidth = 62;
+			this->dgv_proveedor->Size = System::Drawing::Size(963, 398);
 			this->dgv_proveedor->TabIndex = 26;
 			// 
 			// Nombre
 			// 
 			this->Nombre->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Nombre->HeaderText = L"Nombre";
+			this->Nombre->MinimumWidth = 8;
 			this->Nombre->Name = L"Nombre";
 			this->Nombre->ReadOnly = true;
 			// 
@@ -588,34 +630,39 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			this->Nit->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Nit->HeaderText = L"Nit";
+			this->Nit->MinimumWidth = 8;
 			this->Nit->Name = L"Nit";
 			this->Nit->ReadOnly = true;
 			// 
 			// Fiscal
 			// 
 			this->Fiscal->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Fiscal->HeaderText = L"Dirección fiscal";
+			this->Fiscal->HeaderText = L"DirecciÃ³n fiscal";
+			this->Fiscal->MinimumWidth = 8;
 			this->Fiscal->Name = L"Fiscal";
 			this->Fiscal->ReadOnly = true;
 			// 
-			// Dirección
+			// DirecciÃ³n
 			// 
-			this->Dirección->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Dirección->HeaderText = L"Dirección";
-			this->Dirección->Name = L"Dirección";
-			this->Dirección->ReadOnly = true;
+			this->DirecciÃ³n->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->DirecciÃ³n->HeaderText = L"DirecciÃ³n";
+			this->DirecciÃ³n->MinimumWidth = 8;
+			this->DirecciÃ³n->Name = L"DirecciÃ³n";
+			this->DirecciÃ³n->ReadOnly = true;
 			// 
-			// Teléfono
+			// TelÃ©fono
 			// 
-			this->Teléfono->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Teléfono->HeaderText = L"Teléfono";
-			this->Teléfono->Name = L"Teléfono";
-			this->Teléfono->ReadOnly = true;
+			this->TelÃ©fono->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->TelÃ©fono->HeaderText = L"TelÃ©fono";
+			this->TelÃ©fono->MinimumWidth = 8;
+			this->TelÃ©fono->Name = L"TelÃ©fono";
+			this->TelÃ©fono->ReadOnly = true;
 			// 
 			// Correo
 			// 
 			this->Correo->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->Correo->HeaderText = L"Correo";
+			this->Correo->MinimumWidth = 8;
 			this->Correo->Name = L"Correo";
 			this->Correo->ReadOnly = true;
 			// 
@@ -623,6 +670,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			this->id->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			this->id->HeaderText = L"id";
+			this->id->MinimumWidth = 8;
 			this->id->Name = L"id";
 			this->id->ReadOnly = true;
 			this->id->Visible = false;
@@ -630,17 +678,19 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// lbl_proveedor
 			// 
 			this->lbl_proveedor->AutoSize = true;
-			this->lbl_proveedor->Location = System::Drawing::Point(91, 67);
+			this->lbl_proveedor->Location = System::Drawing::Point(136, 103);
+			this->lbl_proveedor->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lbl_proveedor->Name = L"lbl_proveedor";
-			this->lbl_proveedor->Size = System::Drawing::Size(56, 13);
+			this->lbl_proveedor->Size = System::Drawing::Size(81, 20);
 			this->lbl_proveedor->TabIndex = 27;
 			this->lbl_proveedor->Text = L"Proveedor";
 			// 
 			// btn_proveedores
 			// 
-			this->btn_proveedores->Location = System::Drawing::Point(64, 96);
+			this->btn_proveedores->Location = System::Drawing::Point(96, 148);
+			this->btn_proveedores->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_proveedores->Name = L"btn_proveedores";
-			this->btn_proveedores->Size = System::Drawing::Size(112, 23);
+			this->btn_proveedores->Size = System::Drawing::Size(168, 35);
 			this->btn_proveedores->TabIndex = 28;
 			this->btn_proveedores->Text = L"mostrar proveedores";
 			this->btn_proveedores->UseVisualStyleBackColor = true;
@@ -650,17 +700,19 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			this->pl_proveedores->Controls->Add(this->btn_cerrar);
 			this->pl_proveedores->Controls->Add(this->dgv_proveedor);
-			this->pl_proveedores->Location = System::Drawing::Point(906, 168);
+			this->pl_proveedores->Location = System::Drawing::Point(1359, 258);
+			this->pl_proveedores->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pl_proveedores->Name = L"pl_proveedores";
-			this->pl_proveedores->Size = System::Drawing::Size(639, 285);
+			this->pl_proveedores->Size = System::Drawing::Size(958, 438);
 			this->pl_proveedores->TabIndex = 29;
 			this->pl_proveedores->Visible = false;
 			// 
 			// btn_cerrar
 			// 
-			this->btn_cerrar->Location = System::Drawing::Point(3, 259);
+			this->btn_cerrar->Location = System::Drawing::Point(4, 398);
+			this->btn_cerrar->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_cerrar->Name = L"btn_cerrar";
-			this->btn_cerrar->Size = System::Drawing::Size(630, 23);
+			this->btn_cerrar->Size = System::Drawing::Size(945, 35);
 			this->btn_cerrar->TabIndex = 27;
 			this->btn_cerrar->Text = L"cerrar";
 			this->btn_cerrar->UseVisualStyleBackColor = true;
@@ -669,19 +721,21 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// lbl_categoria
 			// 
 			this->lbl_categoria->AutoSize = true;
-			this->lbl_categoria->Location = System::Drawing::Point(32, 149);
+			this->lbl_categoria->Location = System::Drawing::Point(48, 229);
+			this->lbl_categoria->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->lbl_categoria->Name = L"lbl_categoria";
-			this->lbl_categoria->Size = System::Drawing::Size(57, 13);
+			this->lbl_categoria->Size = System::Drawing::Size(82, 20);
 			this->lbl_categoria->TabIndex = 30;
-			this->lbl_categoria->Text = L"Categoría:";
+			this->lbl_categoria->Text = L"CategorÃ­a:";
 			// 
 			// rB_libre
 			// 
 			this->rB_libre->AutoSize = true;
 			this->rB_libre->Checked = true;
-			this->rB_libre->Location = System::Drawing::Point(104, 147);
+			this->rB_libre->Location = System::Drawing::Point(156, 226);
+			this->rB_libre->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->rB_libre->Name = L"rB_libre";
-			this->rB_libre->Size = System::Drawing::Size(75, 17);
+			this->rB_libre->Size = System::Drawing::Size(110, 24);
 			this->rB_libre->TabIndex = 31;
 			this->rB_libre->TabStop = true;
 			this->rB_libre->Text = L"Venta libre";
@@ -691,9 +745,10 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// rB_receta
 			// 
 			this->rB_receta->AutoSize = true;
-			this->rB_receta->Location = System::Drawing::Point(195, 149);
+			this->rB_receta->Location = System::Drawing::Point(292, 229);
+			this->rB_receta->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->rB_receta->Name = L"rB_receta";
-			this->rB_receta->Size = System::Drawing::Size(86, 17);
+			this->rB_receta->Size = System::Drawing::Size(126, 24);
 			this->rB_receta->TabIndex = 32;
 			this->rB_receta->TabStop = true;
 			this->rB_receta->Text = L"Venta receta";
@@ -702,9 +757,10 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			// btn_inventario
 			// 
-			this->btn_inventario->Location = System::Drawing::Point(302, 135);
+			this->btn_inventario->Location = System::Drawing::Point(453, 208);
+			this->btn_inventario->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_inventario->Name = L"btn_inventario";
-			this->btn_inventario->Size = System::Drawing::Size(75, 40);
+			this->btn_inventario->Size = System::Drawing::Size(112, 62);
 			this->btn_inventario->TabIndex = 33;
 			this->btn_inventario->Text = L"Inventario";
 			this->btn_inventario->UseVisualStyleBackColor = true;
@@ -716,17 +772,19 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			this->pl_inventario->Controls->Add(this->pl_inventario_btn_mostrar);
 			this->pl_inventario->Controls->Add(this->pl_inventario_tB_nombre);
 			this->pl_inventario->Controls->Add(this->pl_inventario_lbl_nombre);
-			this->pl_inventario->Location = System::Drawing::Point(235, 283);
+			this->pl_inventario->Location = System::Drawing::Point(352, 435);
+			this->pl_inventario->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pl_inventario->Name = L"pl_inventario";
-			this->pl_inventario->Size = System::Drawing::Size(200, 121);
+			this->pl_inventario->Size = System::Drawing::Size(300, 186);
 			this->pl_inventario->TabIndex = 34;
 			this->pl_inventario->Visible = false;
 			// 
 			// pl_inventario_btn_cerrar
 			// 
-			this->pl_inventario_btn_cerrar->Location = System::Drawing::Point(55, 87);
+			this->pl_inventario_btn_cerrar->Location = System::Drawing::Point(82, 134);
+			this->pl_inventario_btn_cerrar->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pl_inventario_btn_cerrar->Name = L"pl_inventario_btn_cerrar";
-			this->pl_inventario_btn_cerrar->Size = System::Drawing::Size(75, 31);
+			this->pl_inventario_btn_cerrar->Size = System::Drawing::Size(112, 48);
 			this->pl_inventario_btn_cerrar->TabIndex = 36;
 			this->pl_inventario_btn_cerrar->Text = L"cerrar";
 			this->pl_inventario_btn_cerrar->UseVisualStyleBackColor = true;
@@ -734,9 +792,10 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			// pl_inventario_btn_mostrar
 			// 
-			this->pl_inventario_btn_mostrar->Location = System::Drawing::Point(55, 56);
+			this->pl_inventario_btn_mostrar->Location = System::Drawing::Point(82, 86);
+			this->pl_inventario_btn_mostrar->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pl_inventario_btn_mostrar->Name = L"pl_inventario_btn_mostrar";
-			this->pl_inventario_btn_mostrar->Size = System::Drawing::Size(75, 31);
+			this->pl_inventario_btn_mostrar->Size = System::Drawing::Size(112, 48);
 			this->pl_inventario_btn_mostrar->TabIndex = 35;
 			this->pl_inventario_btn_mostrar->Text = L"mostrar";
 			this->pl_inventario_btn_mostrar->UseVisualStyleBackColor = true;
@@ -744,25 +803,28 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			// pl_inventario_tB_nombre
 			// 
-			this->pl_inventario_tB_nombre->Location = System::Drawing::Point(44, 30);
+			this->pl_inventario_tB_nombre->Location = System::Drawing::Point(66, 46);
+			this->pl_inventario_tB_nombre->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pl_inventario_tB_nombre->Name = L"pl_inventario_tB_nombre";
-			this->pl_inventario_tB_nombre->Size = System::Drawing::Size(100, 20);
+			this->pl_inventario_tB_nombre->Size = System::Drawing::Size(148, 26);
 			this->pl_inventario_tB_nombre->TabIndex = 35;
 			// 
 			// pl_inventario_lbl_nombre
 			// 
 			this->pl_inventario_lbl_nombre->AutoSize = true;
-			this->pl_inventario_lbl_nombre->Location = System::Drawing::Point(77, 14);
+			this->pl_inventario_lbl_nombre->Location = System::Drawing::Point(116, 22);
+			this->pl_inventario_lbl_nombre->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->pl_inventario_lbl_nombre->Name = L"pl_inventario_lbl_nombre";
-			this->pl_inventario_lbl_nombre->Size = System::Drawing::Size(44, 13);
+			this->pl_inventario_lbl_nombre->Size = System::Drawing::Size(65, 20);
 			this->pl_inventario_lbl_nombre->TabIndex = 0;
 			this->pl_inventario_lbl_nombre->Text = L"Nombre";
 			// 
 			// btn_filtrar
 			// 
-			this->btn_filtrar->Location = System::Drawing::Point(681, 103);
+			this->btn_filtrar->Location = System::Drawing::Point(1022, 158);
+			this->btn_filtrar->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->btn_filtrar->Name = L"btn_filtrar";
-			this->btn_filtrar->Size = System::Drawing::Size(75, 59);
+			this->btn_filtrar->Size = System::Drawing::Size(112, 91);
 			this->btn_filtrar->TabIndex = 35;
 			this->btn_filtrar->Text = L"Filtrar";
 			this->btn_filtrar->UseVisualStyleBackColor = true;
@@ -777,17 +839,19 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			this->pl_buscar->Controls->Add(this->pl_buscar_btn_nombre);
 			this->pl_buscar->Controls->Add(this->pl_buscar_tB_nombre);
 			this->pl_buscar->Controls->Add(this->pl_buscar_lbl_nombre);
-			this->pl_buscar->Location = System::Drawing::Point(461, 283);
+			this->pl_buscar->Location = System::Drawing::Point(692, 435);
+			this->pl_buscar->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pl_buscar->Name = L"pl_buscar";
-			this->pl_buscar->Size = System::Drawing::Size(243, 121);
+			this->pl_buscar->Size = System::Drawing::Size(364, 186);
 			this->pl_buscar->TabIndex = 37;
 			this->pl_buscar->Visible = false;
 			// 
 			// pl_buscar_btn_principio
 			// 
-			this->pl_buscar_btn_principio->Location = System::Drawing::Point(146, 56);
+			this->pl_buscar_btn_principio->Location = System::Drawing::Point(219, 86);
+			this->pl_buscar_btn_principio->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pl_buscar_btn_principio->Name = L"pl_buscar_btn_principio";
-			this->pl_buscar_btn_principio->Size = System::Drawing::Size(75, 31);
+			this->pl_buscar_btn_principio->Size = System::Drawing::Size(112, 48);
 			this->pl_buscar_btn_principio->TabIndex = 39;
 			this->pl_buscar_btn_principio->Text = L"Principio";
 			this->pl_buscar_btn_principio->UseVisualStyleBackColor = true;
@@ -795,9 +859,10 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			// pl_buscar_tB_principio
 			// 
-			this->pl_buscar_tB_principio->Location = System::Drawing::Point(132, 30);
+			this->pl_buscar_tB_principio->Location = System::Drawing::Point(198, 46);
+			this->pl_buscar_tB_principio->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pl_buscar_tB_principio->Name = L"pl_buscar_tB_principio";
-			this->pl_buscar_tB_principio->Size = System::Drawing::Size(100, 20);
+			this->pl_buscar_tB_principio->Size = System::Drawing::Size(148, 26);
 			this->pl_buscar_tB_principio->TabIndex = 38;
 			// 
 			// pl_buscar_lbl_principio
@@ -811,9 +876,10 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			// pl_buscar_btn_cerrar
 			// 
-			this->pl_buscar_btn_cerrar->Location = System::Drawing::Point(81, 87);
+			this->pl_buscar_btn_cerrar->Location = System::Drawing::Point(122, 134);
+			this->pl_buscar_btn_cerrar->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pl_buscar_btn_cerrar->Name = L"pl_buscar_btn_cerrar";
-			this->pl_buscar_btn_cerrar->Size = System::Drawing::Size(75, 31);
+			this->pl_buscar_btn_cerrar->Size = System::Drawing::Size(112, 48);
 			this->pl_buscar_btn_cerrar->TabIndex = 36;
 			this->pl_buscar_btn_cerrar->Text = L"cerrar";
 			this->pl_buscar_btn_cerrar->UseVisualStyleBackColor = true;
@@ -821,9 +887,10 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			// pl_buscar_btn_nombre
 			// 
-			this->pl_buscar_btn_nombre->Location = System::Drawing::Point(23, 56);
+			this->pl_buscar_btn_nombre->Location = System::Drawing::Point(34, 86);
+			this->pl_buscar_btn_nombre->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pl_buscar_btn_nombre->Name = L"pl_buscar_btn_nombre";
-			this->pl_buscar_btn_nombre->Size = System::Drawing::Size(75, 31);
+			this->pl_buscar_btn_nombre->Size = System::Drawing::Size(112, 48);
 			this->pl_buscar_btn_nombre->TabIndex = 35;
 			this->pl_buscar_btn_nombre->Text = L"Nombre";
 			this->pl_buscar_btn_nombre->UseVisualStyleBackColor = true;
@@ -831,17 +898,19 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			// pl_buscar_tB_nombre
 			// 
-			this->pl_buscar_tB_nombre->Location = System::Drawing::Point(12, 30);
+			this->pl_buscar_tB_nombre->Location = System::Drawing::Point(18, 46);
+			this->pl_buscar_tB_nombre->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pl_buscar_tB_nombre->Name = L"pl_buscar_tB_nombre";
-			this->pl_buscar_tB_nombre->Size = System::Drawing::Size(100, 20);
+			this->pl_buscar_tB_nombre->Size = System::Drawing::Size(148, 26);
 			this->pl_buscar_tB_nombre->TabIndex = 35;
 			// 
 			// pl_buscar_lbl_nombre
 			// 
 			this->pl_buscar_lbl_nombre->AutoSize = true;
-			this->pl_buscar_lbl_nombre->Location = System::Drawing::Point(43, 14);
+			this->pl_buscar_lbl_nombre->Location = System::Drawing::Point(64, 22);
+			this->pl_buscar_lbl_nombre->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->pl_buscar_lbl_nombre->Name = L"pl_buscar_lbl_nombre";
-			this->pl_buscar_lbl_nombre->Size = System::Drawing::Size(44, 13);
+			this->pl_buscar_lbl_nombre->Size = System::Drawing::Size(65, 20);
 			this->pl_buscar_lbl_nombre->TabIndex = 0;
 			this->pl_buscar_lbl_nombre->Text = L"Nombre";
 			// 
@@ -895,7 +964,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			// 
 			// main
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(980, 427);
 			this->Controls->Add(this->pl_informe);
@@ -931,6 +1000,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			this->Controls->Add(this->dgv_inventario);
 			this->Controls->Add(this->dgv_medicamento);
 			this->Controls->Add(this->btn_inventario);
+			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"main";
 			this->Text = L"main";
 			this->Load += gcnew System::EventHandler(this, &main::main_Load);
@@ -952,11 +1022,11 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 		
 		//Contiene todos los metodos y las variables del sistema
 		Sistema^ sistema = gcnew Sistema();
-		//Categoría seleccionada
-		Clasificación categoría = ventaLibre;
+		//CategorÃ­a seleccionada
+		ClasificaciÃ³n categorÃ­a = ventaLibre;
 		//Form para filtrar medicamentos
 		Filtrar^ formFiltrado;
-
+    void actualizar();
 		void desplegarProveedores();
 		void desplegarInventario(Inventario^ inventario);
 
@@ -971,7 +1041,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 		private: System::Void btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
 		//Selecciona la categoria "Venta libre"	
 		private: System::Void rB_libre_Click(System::Object^ sender, System::EventArgs^ e);
-		//Selecciona la categoría "Venta receta"
+		//Selecciona la categorÃ­a "Venta receta"
 		private: System::Void rB_receta_Click(System::Object^ sender, System::EventArgs^ e);
 		//Despliega el inventario del medicamento dado
 		private: System::Void dgv_medicamento_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
@@ -998,5 +1068,39 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 		//Abre el form utilizado para mostrar los medicamentos con un filtro dado
 		private: System::Void btn_filtrar_Click(System::Object^ sender, System::EventArgs^ e);
 #pragma endregion
-	};
+	
+private: System::Void dgv_inventario_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+
+}
+
+private: System::Void dgv_medicamento_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	tB_nombre->Text = dgv_medicamento->CurrentRow->Cells[0]->Value->ToString();
+	tB_principio->Text = dgv_medicamento->CurrentRow->Cells[3]->Value->ToString();
+	tB_dosis->Text = dgv_medicamento->CurrentRow->Cells[4]->Value->ToString();
+}
+private: System::Void dgv_medicamento_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+
+}
+private: System::Void dgv_medicamento_RowHeaderMouseDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellMouseEventArgs^ e) {
+	
+}
+
+private: System::Void dgv_inventario_CellDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	tB_stock->Text = dgv_inventario->CurrentRow->Cells[0]->Value->ToString();
+	System::DateTime fecha = System::DateTime::Parse(dgv_inventario->CurrentRow->Cells[1]->Value->ToString());
+	dT_caducidad->Value = fecha;
+	tB_compra->Text = dgv_inventario->CurrentRow->Cells[3]->Value->ToString();
+	tB_venta->Text = dgv_inventario->CurrentRow->Cells[4]->Value->ToString();
+}
+	   private: System::Void btn_actualizar_Click(System::Object^ sender, System::EventArgs^ e) {
+		   actualizar();
+	   }
+
+private: System::Void btn_promedio_Click(System::Object^ sender, System::EventArgs^ e) {
+	MessageBox::Show(
+		"Promedio de Venta: " + sistema.getPromV().ToString() +
+		"\nPromedio de Compra " + sistema.getPromC().ToString()
+	);
+}
+};
 }

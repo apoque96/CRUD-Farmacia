@@ -112,6 +112,7 @@ System::Void main::btn_agregar_Click(System::Object^ sender, System::EventArgs^ 
 			inventario->getCategoría() == 0 ? "Venta Libre" : "Venta Receta",
 			inventario->getPrincipiosActivos(),
 			inventario->getDosisMg()
+
 		);
 		sistema->añadirMedicamentoAProveedor(gcnew Medicamento(
 			tB_nombre->Text,
@@ -125,6 +126,22 @@ System::Void main::btn_agregar_Click(System::Object^ sender, System::EventArgs^ 
 		System::Windows::Forms::MessageBox::Show("Falta algún dato");
 	}
 }
+
+void main::actualizar()
+{
+	Inventario^ medicamentos = sistema.getInventario(pl_buscar_tB_nombre->Text);
+	medicamentos->setNombre(tB_nombre->Text);
+	medicamentos->setCaducidad(dT_caducidad->Value.ToString());
+	medicamentos->setCantidad(System::Convert::ToInt32(tB_stock->Text));
+	medicamentos->setCompra(System::Convert::ToDouble(tB_compra->Text));
+	medicamentos->setDosisMg(System::Convert::ToDouble(tB_dosis->Text));
+	medicamentos->setVenta(System::Convert::ToDouble(tB_venta->Text));
+	medicamentos->setPrincipiosActivos(tB_principio->Text);
+	medicamentos->setCategoría(categoría);
+}
+
+
+
 //Muestra el panel de los proveedores
 System::Void main::btn_proveedores_Click(System::Object^ sender, System::EventArgs^ e) {
 	pl_proveedores->Location = btn_proveedores->Location;
@@ -197,6 +214,7 @@ System::Void main::pl_buscar_btn_nombre_Click(System::Object^ sender, System::Ev
 		MessageBox::Show("Medicamento no encontrado");
 	}
 }
+
 //Busca el medicamento a partir de su principio activo
 System::Void main::pl_buscar_btn_principio_Click(System::Object^ sender, System::EventArgs^ e) {
 	try

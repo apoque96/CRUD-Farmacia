@@ -20,11 +20,11 @@ private:
 public:
 	//Constructor de la lista
 	Lista() : size(0){}
-	//AÒade un nodo al final de la lista
+	//A√±ade un nodo al final de la lista
 	void Add(T val) {
 		size++;
 		if (!head) {
-			//Se ejecuta en caso de que la lista est· vacia
+			//Se ejecuta en caso de que la lista est√° vacia
 			head = gcnew Node<T>(val);
 			tail = head;
 			return;
@@ -33,7 +33,7 @@ public:
 		tail->next->prev = tail;
 		tail = tail->next;
 	}
-	//Borra el nodo seg˙n el valor dado
+	//Borra el nodo seg√∫n el valor dado
 	void Remove(T val) {
 		if (size <= 0) return;
 		size--;
@@ -42,7 +42,7 @@ public:
 		while (current && current->val != val) {
 			current = current->next;
 		}
-		//En caso de no encontrar el nodo, simplemente no borra ning˙n nodo
+		//En caso de no encontrar el nodo, simplemente no borra ning√∫n nodo
 		if (!current) return;
 		//En caso de que el nodo sea la cabeza, asigna el siguiente nodo como la nueva cabeza
 		if (current == head) {
@@ -61,9 +61,9 @@ public:
 		current->next->prev = current->prev;
 		current = nullptr;
 	}
-	//Borra el nodo seg˙n el indice indicado
+	//Borra el nodo seg√∫n el indice indicado
 	void Remove(int index) {
-		//Si el indice est· fuera de rango, no hace nada
+		//Si el indice est√° fuera de rango, no hace nada
 		if (index < 0 || index >= size) return;
 		Node<T>^ node_to_delete;
 		//Elimina la cabeza
@@ -158,12 +158,52 @@ public:
 		return size;
 	}
 
+	double promC() {
+		int n = 0;
+		Node<T>^ nodeAcutal;
+		int sum = 0;
+
+		if (head == nullptr) {
+			return 0;
+		}
+		else {
+			nodeAcutal = head;
+			while (nodeAcutal != nullptr)
+			{
+				sum += nodeAcutal->val->getCompra();
+				nodeAcutal = nodeAcutal->next;
+				n++;
+			}
+		}
+		return sum / n;
+	}
+	
+	double promV() {
+		int n = 0;
+		Node<T>^ nodeAcutal;
+		int sum = 0;
+
+		if (head == nullptr) {
+			return 0;
+		}
+		else {
+			nodeAcutal = head;
+			while (nodeAcutal != nullptr)
+			{
+				sum += nodeAcutal->val->getVenta();
+				nodeAcutal = nodeAcutal->next;
+				n++;
+			}
+		}
+		return sum/n;
+	}
+  
 	//Escribe los datos a un archivo CSV
 	//Nota: utilizar solo con listas de inventario
 	void escribirCSV(std::string nombre) {
 		std::ofstream archivo(nombre + ".csv");
 
-		archivo << "Medicamento" << "," << "N˙mero de registro" << "," << "CategorÌa" << "," <<
+		archivo << "Medicamento" << "," << "N√∫mero de registro" << "," << "Categor√≠a" << "," <<
 			"Principios activos" << "," << "Dosis recomendada(mg)" << "," << "Stock" << "," <<
 			"Fecha de caducidad" << "," << "Proveedor" << "," << "Precio de compra" << "," <<
 			"Precio de venta" << '\n';
@@ -184,7 +224,7 @@ public:
 		while (current) {
 			Nombre = context.marshal_as<std::string>(current->val->getNombre());
 			registro = context.marshal_as<std::string>(current->val->getNumRegistro().ToString());
-			categoria = current->val->getCategorÌa() == 0 ? "Venta Libre" : "Venta Receta";
+			categoria = current->val->getCategor√≠a() == 0 ? "Venta Libre" : "Venta Receta";
 			principio = context.marshal_as<std::string>(current->val->getPrincipiosActivos());
 			dosis = context.marshal_as<std::string>(current->val->getDosisMg().ToString());
 			cantidad = context.marshal_as<std::string>(current->val->getCantidad().ToString());
@@ -209,7 +249,7 @@ public:
 			dgv->Rows->Add(
 				val->getNombre(),
 				val->getNumRegistro(),
-				val->getCategorÌa() == 0 ? "Venta Libre" : "Venta Receta",
+				val->getCategor√≠a() == 0 ? "Venta Libre" : "Venta Receta",
 				val->getPrincipiosActivos(),
 				val->getDosisMg()
 			);
@@ -217,27 +257,28 @@ public:
 		}
 	}
 
-	//Muestra los datos en el DGV de filtrado cuando se filtra por categorÌa
+	//Muestra los datos en el DGV de filtrado cuando se filtra por categor√≠a
 	//Nora: utilizar solo con listas de Inventario
-	void filtrarPorCategorÌa(System::Windows::Forms::DataGridView^ dgv, int categorÌa) {
+	void filtrarPorCategor√≠a(System::Windows::Forms::DataGridView^ dgv, int categor√≠a) {
 		//0 = ventaLibre, 1 = ventaReceta
 		Node<T>^ current = head;
 		while (current) {
 			auto val = current->val;
-			if (val->getCategorÌa() != categorÌa) {
+			if (val->getCategor√≠a() != categor√≠a) {
 				current = current->next;
 				continue;
 			}
 			dgv->Rows->Add(
 				val->getNombre(),
 				val->getNumRegistro(),
-				val->getCategorÌa() == 0 ? "Venta Libre" : "Venta Receta",
+				val->getCategor√≠a() == 0 ? "Venta Libre" : "Venta Receta",
 				val->getPrincipiosActivos(),
 				val->getDosisMg()
 			);
 			current = current->next;
 		}
 	}
+
 #pragma region Sort
 	void swap(Node<T>^ a, Node<T>^ b) {
 		T temp = a->val;
