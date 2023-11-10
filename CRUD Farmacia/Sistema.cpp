@@ -1,14 +1,17 @@
 #pragma once
 #include "Sistema.h"
+#include"main.h"
 
 void Sistema::registrar(System::String^ nombre, System::String^ principio, double dosis, int stock,
 	Proveedor^ proveedor, System::String^ caducidad, double compra, double venta) {
 	
 	//TODO
 }
+
 void Sistema::actualizar(Inventario^ inventario) {
 	//TODO
 }
+
 void Sistema::informe() {
 	//TODO
 }
@@ -51,3 +54,4 @@ Inventario^ Sistema::getInventario(System::String^ nombre) {
 Inventario^ Sistema::getInventarioPrincipio(System::String^ principio) {
 	return listaInventario.GetNodeVal(listaInventario.GetMedicamentoPrincipio(principio));
 }
+

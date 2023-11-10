@@ -31,3 +31,28 @@ double Medicamento::getDosisMg() {
 System::String^ Medicamento::getPrincipiosActivos() {
 	return principiosActivos;
 }
+
+void Medicamento::setNombre(System::String^ nombre)
+{
+	this->nombre = nombre;
+}
+
+void Medicamento::setNumRegistro(int numRegistro)
+{
+	this->numRegistro = numRegistro;
+}
+
+void Medicamento::setDosisMg(double dosisRecomendada_mg)
+{
+	this->dosisRecomendada_mg = dosisRecomendada_mg;
+}
+
+void Medicamento::setPrincipiosActivos(System::String^ principiosActivos)
+{
+	this->principiosActivos = principiosActivos;
+}
+
+void Medicamento::setCategoría(Clasificación categoría)
+{
+	this->categoría = categoría;
+}
