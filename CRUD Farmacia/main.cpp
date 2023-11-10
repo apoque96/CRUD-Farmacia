@@ -141,6 +141,7 @@ void main::actualizar()
 }
 
 
+
 //Muestra el panel de los proveedores
 System::Void main::btn_proveedores_Click(System::Object^ sender, System::EventArgs^ e) {
 	pl_proveedores->Location = btn_proveedores->Location;
@@ -214,6 +215,7 @@ System::Void main::pl_buscar_btn_nombre_Click(System::Object^ sender, System::Ev
 		MessageBox::Show("Medicamento no encontrado");
 	}
 }
+
 //Busca el medicamento a partir de su principio activo
 System::Void main::pl_buscar_btn_principio_Click(System::Object^ sender, System::EventArgs^ e) {
 	try

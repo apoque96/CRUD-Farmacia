@@ -55,6 +55,16 @@ Inventario^ Sistema::getInventarioPrincipio(System::String^ principio) {
 	return listaInventario.GetNodeVal(listaInventario.GetMedicamentoPrincipio(principio));
 }
 
+double Sistema::getPromC()
+{
+	return listaInventario.promC();
+}
+
+double Sistema::getPromV()
+{
+	return listaInventario.promV();
+}
+
 void Sistema::añadirMedicamentoAProveedor(Medicamento^ medicamento, int index) {
 	listaProveedores.GetNodeVal(listaProveedores.Get(index))->agregarMedicamento(medicamento);
 }

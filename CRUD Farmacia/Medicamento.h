@@ -28,4 +28,5 @@ public:
 	void setDosisMg(double dosisRecomendada_mg);
 	void setPrincipiosActivos(System::String^ principiosActivos);
 	void setCategoría(Clasificación categoría);
+
 };
