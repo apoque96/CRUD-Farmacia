@@ -22,7 +22,7 @@ int Sistema::promedio() {
 void Sistema::inventarioMedicamento(Inventario^ inventario) {
 	//TODO
 }
-double Sistema::precioM�sAlto(Proveedor^ proveedor) {
+double Sistema::precioMásAlto(Proveedor^ proveedor) {
 	//TODO
 	return 0;
 }
@@ -31,7 +31,7 @@ Medicamento^ Sistema::buscarCriterio() {
 	return nullptr;
 }
 
-void Sistema::a�adirProveedor(Proveedor^ proveedor) {
+void Sistema::añadirProveedor(Proveedor^ proveedor) {
 	listaProveedores.Add(proveedor);
 }
 
@@ -39,7 +39,7 @@ Proveedor^ Sistema::getProveedor(int index) {
 	return listaProveedores.GetNodeVal(listaProveedores.Get(index));
 }
 
-void Sistema::a�adirInventario(Inventario^ inventario) {
+void Sistema::añadirInventario(Inventario^ inventario) {
 	listaInventario.Add(inventario);
 }
 
@@ -65,3 +65,22 @@ double Sistema::getPromV()
 	return listaInventario.promV();
 }
 
+void Sistema::añadirMedicamentoAProveedor(Medicamento^ medicamento, int index) {
+	listaProveedores.GetNodeVal(listaProveedores.Get(index))->agregarMedicamento(medicamento);
+}
+
+void Sistema::generarInforme(std::string nombre) {
+	listaInventario.escribirCSV(nombre);
+}
+
+int Sistema::inventarioVacio() {
+	return listaInventario.Size() == 0 ? true : false;
+}
+
+void Sistema::filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv, int index) {
+	listaProveedores.GetNodeVal(listaProveedores.Get(index))->filtrarPorProveedor(dgv);
+}
+
+void Sistema::filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría) {
+	listaInventario.filtrarPorCategoría(dgv, categoría);
+}

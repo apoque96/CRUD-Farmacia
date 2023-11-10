@@ -33,3 +33,11 @@ System::String^ Proveedor::getCorreo() {
 int Proveedor::getId() {
 	return id;
 }
+
+void Proveedor::agregarMedicamento(Medicamento^ medicamento) {
+	listaMedicamentos.Add(medicamento);
+}
+
+void Proveedor::filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv) {
+	listaMedicamentos.filtrarPorProveedor(dgv);
+}

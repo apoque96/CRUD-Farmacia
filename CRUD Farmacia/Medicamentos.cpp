@@ -7,7 +7,7 @@ Medicamento::Medicamento(System::String^ nombre, Clasificación categoría,
 	this->categoría = categoría;
 	this->dosisRecomendada_mg = dosisRecomendadaMg;
 	this->principiosActivos = principiosActivos;
-	this->numRegistro = idRegistro++;
+	this->numRegistro = numRegistro;
 }
 Medicamento::Medicamento(Medicamento% m) {
 	nombre = m.nombre;

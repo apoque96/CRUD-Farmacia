@@ -1,5 +1,8 @@
 #pragma once
-#include "Inventario.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <msclr\marshal_cppstd.h>
 template <class T>
 ref class Lista {
 private:
@@ -17,11 +20,11 @@ private:
 public:
 	//Constructor de la lista
 	Lista() : size(0){}
-	//A�ade un nodo al final de la lista
+	//Añade un nodo al final de la lista
 	void Add(T val) {
 		size++;
 		if (!head) {
-			//Se ejecuta en caso de que la lista est� vacia
+			//Se ejecuta en caso de que la lista está vacia
 			head = gcnew Node<T>(val);
 			tail = head;
 			return;
@@ -30,7 +33,7 @@ public:
 		tail->next->prev = tail;
 		tail = tail->next;
 	}
-	//Borra el nodo seg�n el valor dado
+	//Borra el nodo según el valor dado
 	void Remove(T val) {
 		if (size <= 0) return;
 		size--;
@@ -39,7 +42,7 @@ public:
 		while (current && current->val != val) {
 			current = current->next;
 		}
-		//En caso de no encontrar el nodo, simplemente no borra ning�n nodo
+		//En caso de no encontrar el nodo, simplemente no borra ningún nodo
 		if (!current) return;
 		//En caso de que el nodo sea la cabeza, asigna el siguiente nodo como la nueva cabeza
 		if (current == head) {
@@ -58,9 +61,9 @@ public:
 		current->next->prev = current->prev;
 		current = nullptr;
 	}
-	//Borra el nodo seg�n el indice indicado
+	//Borra el nodo según el indice indicado
 	void Remove(int index) {
-		//Si el indice est� fuera de rango, no hace nada
+		//Si el indice está fuera de rango, no hace nada
 		if (index < 0 || index >= size) return;
 		Node<T>^ node_to_delete;
 		//Elimina la cabeza
@@ -114,8 +117,9 @@ public:
 	}
 
 	//Obtiene el nodo con el nombre del medicamento dado
-	Node<Inventario^>^ GetMedicamento(System::String^ nombre) {
-		Node<Inventario^>^ current = head;
+	//Nota: solo utilizar con la lista de inventario
+	Node<T>^ GetMedicamento(System::String^ nombre) {
+		Node<T>^ current = head;
 		while (current) {
 			if (!System::String::Compare(nombre, current->val->getNombre())) return current;
 			current = current->next;
@@ -124,8 +128,9 @@ public:
 	}
 
 	//Obtiene el nodo con el principio activo del medicamento dado
-	Node<Inventario^>^ GetMedicamentoPrincipio(System::String^ principio) {
-		Node<Inventario^>^ current = head;
+	//Nota: solo utilizar con la lista de inventario
+	Node<T>^ GetMedicamentoPrincipio(System::String^ principio) {
+		Node<T>^ current = head;
 		while (current) {
 			if (!System::String::Compare(principio, current->val->getPrincipiosActivos())) return current;
 			current = current->next;
@@ -137,6 +142,12 @@ public:
 	T GetNodeVal(Node<T>^ node) {
 		if(node) return node->val;
 		throw 0;
+	}
+
+	//Obtiene el nodo al que apunta del nodo dado
+	Node<T>^ nextNode(Node<T>^ node) {
+		if (node) return node->next;
+		return nullptr;
 	}
 
 	bool isEmpty() {
@@ -186,8 +197,87 @@ public:
 		}
 		return sum/n;
 	}
+  
+	//Escribe los datos a un archivo CSV
+	//Nota: utilizar solo con listas de inventario
+	void escribirCSV(std::string nombre) {
+		std::ofstream archivo(nombre + ".csv");
 
+		archivo << "Medicamento" << "," << "Número de registro" << "," << "Categoría" << "," <<
+			"Principios activos" << "," << "Dosis recomendada(mg)" << "," << "Stock" << "," <<
+			"Fecha de caducidad" << "," << "Proveedor" << "," << "Precio de compra" << "," <<
+			"Precio de venta" << '\n';
+
+		Node<T>^ current = head;
+		msclr::interop::marshal_context context;
+		//Cli be like
+		std::string Nombre;
+		std::string registro;
+		std::string categoria;
+		std::string principio;
+		std::string dosis;
+		std::string cantidad;
+		std::string caducidad;
+		std::string proveedor;
+		std::string compra;
+		std::string venta;
+		while (current) {
+			Nombre = context.marshal_as<std::string>(current->val->getNombre());
+			registro = context.marshal_as<std::string>(current->val->getNumRegistro().ToString());
+			categoria = current->val->getCategoría() == 0 ? "Venta Libre" : "Venta Receta";
+			principio = context.marshal_as<std::string>(current->val->getPrincipiosActivos());
+			dosis = context.marshal_as<std::string>(current->val->getDosisMg().ToString());
+			cantidad = context.marshal_as<std::string>(current->val->getCantidad().ToString());
+			caducidad = context.marshal_as<std::string>(current->val->getCaducidad());
+			proveedor = context.marshal_as<std::string>(current->val->getProveedor()->getNombre());
+			compra = context.marshal_as<std::string>(current->val->getCompra().ToString());
+			venta = context.marshal_as<std::string>(current->val->getVenta().ToString());
+			archivo << Nombre << ',' << registro << ',' << categoria << ',' << principio << ',' <<
+				dosis << ',' << cantidad << ',' << caducidad << ',' << proveedor << ',' << compra <<
+				',' << venta << '\n';
+			current = current->next;
+		}
+		archivo.close();
+	}
 	
+	//Muestra los datos en el DGV de filtrado cuando se filtra por proveedores
+	//Nora: utilizar solo con listas de proveedores
+	void filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv) {
+		Node<T>^ current = head;
+		while (current) {
+			auto val = current->val;
+			dgv->Rows->Add(
+				val->getNombre(),
+				val->getNumRegistro(),
+				val->getCategoría() == 0 ? "Venta Libre" : "Venta Receta",
+				val->getPrincipiosActivos(),
+				val->getDosisMg()
+			);
+			current = current->next;
+		}
+	}
+
+	//Muestra los datos en el DGV de filtrado cuando se filtra por categoría
+	//Nora: utilizar solo con listas de Inventario
+	void filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría) {
+		//0 = ventaLibre, 1 = ventaReceta
+		Node<T>^ current = head;
+		while (current) {
+			auto val = current->val;
+			if (val->getCategoría() != categoría) {
+				current = current->next;
+				continue;
+			}
+			dgv->Rows->Add(
+				val->getNombre(),
+				val->getNumRegistro(),
+				val->getCategoría() == 0 ? "Venta Libre" : "Venta Receta",
+				val->getPrincipiosActivos(),
+				val->getDosisMg()
+			);
+			current = current->next;
+		}
+	}
 
 #pragma region Sort
 	void swap(Node<T>^ a, Node<T>^ b) {

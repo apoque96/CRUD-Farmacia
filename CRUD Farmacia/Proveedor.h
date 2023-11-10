@@ -1,5 +1,6 @@
 #pragma once
-
+#include "Lista.h"
+#include "Medicamento.h"
 ref class Proveedor {
 private:
 	System::String^ nombre;
@@ -9,6 +10,7 @@ private:
 	System::String^ teléfono;
 	System::String^ correo;
 	int id;
+	Lista<Medicamento^> listaMedicamentos;
 public:
 	Proveedor(System::String^ nombre, int Nit, System::String^ direcciónFiscal,
 		System::String^ dirección, System::String^ teléfono, System::String^ correo, int id);
@@ -19,4 +21,6 @@ public:
 	System::String^ getTeléfono();
 	System::String^ getCorreo();
 	int getId();
+	void agregarMedicamento(Medicamento^ medicamento);
+	void filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv);
 };

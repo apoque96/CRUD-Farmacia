@@ -1,5 +1,10 @@
 #pragma once
 #include "Sistema.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <msclr\marshal_cppstd.h>
+#include "Filtrar.h"
 
 namespace CRUDFarmacia {
 
@@ -107,7 +112,7 @@ namespace CRUDFarmacia {
 
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ column_Medicamento;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ registro;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Categoría;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ CategorÃ­a;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Principios;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Dosis;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Stock;
@@ -118,8 +123,8 @@ namespace CRUDFarmacia {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nombre;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Nit;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Fiscal;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Dirección;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Teléfono;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ DirecciÃ³n;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TelÃ©fono;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Correo;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
 	private: System::Windows::Forms::Button^ btn_proveedores;
@@ -155,6 +160,13 @@ private: System::Windows::Forms::Button^ pl_buscar_btn_principio;
 private: System::Windows::Forms::TextBox^ pl_buscar_tB_principio;
 
 private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
+private: System::Windows::Forms::Panel^ pl_informe;
+private: System::Windows::Forms::Button^ pl_informe_btn_cerrar;
+
+private: System::Windows::Forms::Button^ pl_informe_btn_guardar;
+private: System::Windows::Forms::TextBox^ pl_informe_tB_nombre;
+
+private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 
 
 
@@ -199,7 +211,7 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->dgv_medicamento = (gcnew System::Windows::Forms::DataGridView());
 			this->column_Medicamento = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->registro = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Categoría = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->CategorÃ­a = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Principios = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Dosis = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->dgv_inventario = (gcnew System::Windows::Forms::DataGridView());
@@ -232,8 +244,8 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->Nombre = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Nit = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Fiscal = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Dirección = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Teléfono = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->DirecciÃ³n = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->TelÃ©fono = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Correo = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->lbl_proveedor = (gcnew System::Windows::Forms::Label());
@@ -258,12 +270,18 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->pl_buscar_btn_nombre = (gcnew System::Windows::Forms::Button());
 			this->pl_buscar_tB_nombre = (gcnew System::Windows::Forms::TextBox());
 			this->pl_buscar_lbl_nombre = (gcnew System::Windows::Forms::Label());
+			this->pl_informe = (gcnew System::Windows::Forms::Panel());
+			this->pl_informe_btn_cerrar = (gcnew System::Windows::Forms::Button());
+			this->pl_informe_btn_guardar = (gcnew System::Windows::Forms::Button());
+			this->pl_informe_tB_nombre = (gcnew System::Windows::Forms::TextBox());
+			this->pl_informe_lbl_nombre = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_medicamento))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_inventario))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dgv_proveedor))->BeginInit();
 			this->pl_proveedores->SuspendLayout();
 			this->pl_inventario->SuspendLayout();
 			this->pl_buscar->SuspendLayout();
+			this->pl_informe->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// dgv_medicamento
@@ -273,7 +291,7 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->dgv_medicamento->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgv_medicamento->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->column_Medicamento,
-					this->registro, this->Categoría, this->Principios, this->Dosis
+					this->registro, this->CategorÃ­a, this->Principios, this->Dosis
 			});
 			this->dgv_medicamento->Location = System::Drawing::Point(18, 283);
 			this->dgv_medicamento->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
@@ -297,18 +315,18 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			// registro
 			// 
 			this->registro->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->registro->HeaderText = L"Número de registro";
+			this->registro->HeaderText = L"NÃºmero de registro";
 			this->registro->MinimumWidth = 8;
 			this->registro->Name = L"registro";
 			this->registro->ReadOnly = true;
 			// 
-			// Categoría
+			// CategorÃ­a
 			// 
-			this->Categoría->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Categoría->HeaderText = L"Categoría";
-			this->Categoría->MinimumWidth = 8;
-			this->Categoría->Name = L"Categoría";
-			this->Categoría->ReadOnly = true;
+			this->CategorÃ­a->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->CategorÃ­a->HeaderText = L"CategorÃ­a";
+			this->CategorÃ­a->MinimumWidth = 8;
+			this->CategorÃ­a->Name = L"CategorÃ­a";
+			this->CategorÃ­a->ReadOnly = true;
 			// 
 			// Principios
 			// 
@@ -415,6 +433,7 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->btn_informe->TabIndex = 4;
 			this->btn_informe->Text = L"Informe";
 			this->btn_informe->UseVisualStyleBackColor = true;
+			this->btn_informe->Click += gcnew System::EventHandler(this, &main::btn_informe_Click);
 			// 
 			// btn_promedio
 			// 
@@ -434,7 +453,7 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->btn_precio->Name = L"btn_precio";
 			this->btn_precio->Size = System::Drawing::Size(112, 91);
 			this->btn_precio->TabIndex = 6;
-			this->btn_precio->Text = L"Precio más alto";
+			this->btn_precio->Text = L"Precio mÃ¡s alto";
 			this->btn_precio->UseVisualStyleBackColor = true;
 			// 
 			// btn_buscar
@@ -589,7 +608,7 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->dgv_proveedor->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dgv_proveedor->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(7) {
 				this->Nombre,
-					this->Nit, this->Fiscal, this->Dirección, this->Teléfono, this->Correo, this->id
+					this->Nit, this->Fiscal, this->DirecciÃ³n, this->TelÃ©fono, this->Correo, this->id
 			});
 			this->dgv_proveedor->Location = System::Drawing::Point(-3, -3);
 			this->dgv_proveedor->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
@@ -618,26 +637,26 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			// Fiscal
 			// 
 			this->Fiscal->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Fiscal->HeaderText = L"Dirección fiscal";
+			this->Fiscal->HeaderText = L"DirecciÃ³n fiscal";
 			this->Fiscal->MinimumWidth = 8;
 			this->Fiscal->Name = L"Fiscal";
 			this->Fiscal->ReadOnly = true;
 			// 
-			// Dirección
+			// DirecciÃ³n
 			// 
-			this->Dirección->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Dirección->HeaderText = L"Dirección";
-			this->Dirección->MinimumWidth = 8;
-			this->Dirección->Name = L"Dirección";
-			this->Dirección->ReadOnly = true;
+			this->DirecciÃ³n->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->DirecciÃ³n->HeaderText = L"DirecciÃ³n";
+			this->DirecciÃ³n->MinimumWidth = 8;
+			this->DirecciÃ³n->Name = L"DirecciÃ³n";
+			this->DirecciÃ³n->ReadOnly = true;
 			// 
-			// Teléfono
+			// TelÃ©fono
 			// 
-			this->Teléfono->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
-			this->Teléfono->HeaderText = L"Teléfono";
-			this->Teléfono->MinimumWidth = 8;
-			this->Teléfono->Name = L"Teléfono";
-			this->Teléfono->ReadOnly = true;
+			this->TelÃ©fono->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->TelÃ©fono->HeaderText = L"TelÃ©fono";
+			this->TelÃ©fono->MinimumWidth = 8;
+			this->TelÃ©fono->Name = L"TelÃ©fono";
+			this->TelÃ©fono->ReadOnly = true;
 			// 
 			// Correo
 			// 
@@ -707,7 +726,7 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->lbl_categoria->Name = L"lbl_categoria";
 			this->lbl_categoria->Size = System::Drawing::Size(82, 20);
 			this->lbl_categoria->TabIndex = 30;
-			this->lbl_categoria->Text = L"Categoría:";
+			this->lbl_categoria->Text = L"CategorÃ­a:";
 			// 
 			// rB_libre
 			// 
@@ -809,6 +828,7 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->btn_filtrar->TabIndex = 35;
 			this->btn_filtrar->Text = L"Filtrar";
 			this->btn_filtrar->UseVisualStyleBackColor = true;
+			this->btn_filtrar->Click += gcnew System::EventHandler(this, &main::btn_filtrar_Click);
 			// 
 			// pl_buscar
 			// 
@@ -848,10 +868,9 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			// pl_buscar_lbl_principio
 			// 
 			this->pl_buscar_lbl_principio->AutoSize = true;
-			this->pl_buscar_lbl_principio->Location = System::Drawing::Point(244, 22);
-			this->pl_buscar_lbl_principio->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->pl_buscar_lbl_principio->Location = System::Drawing::Point(163, 14);
 			this->pl_buscar_lbl_principio->Name = L"pl_buscar_lbl_principio";
-			this->pl_buscar_lbl_principio->Size = System::Drawing::Size(68, 20);
+			this->pl_buscar_lbl_principio->Size = System::Drawing::Size(47, 13);
 			this->pl_buscar_lbl_principio->TabIndex = 37;
 			this->pl_buscar_lbl_principio->Text = L"Principio";
 			// 
@@ -895,11 +914,60 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->pl_buscar_lbl_nombre->TabIndex = 0;
 			this->pl_buscar_lbl_nombre->Text = L"Nombre";
 			// 
+			// pl_informe
+			// 
+			this->pl_informe->Controls->Add(this->pl_informe_btn_cerrar);
+			this->pl_informe->Controls->Add(this->pl_informe_btn_guardar);
+			this->pl_informe->Controls->Add(this->pl_informe_tB_nombre);
+			this->pl_informe->Controls->Add(this->pl_informe_lbl_nombre);
+			this->pl_informe->Location = System::Drawing::Point(653, 21);
+			this->pl_informe->Name = L"pl_informe";
+			this->pl_informe->Size = System::Drawing::Size(200, 121);
+			this->pl_informe->TabIndex = 37;
+			this->pl_informe->Visible = false;
+			// 
+			// pl_informe_btn_cerrar
+			// 
+			this->pl_informe_btn_cerrar->Location = System::Drawing::Point(55, 87);
+			this->pl_informe_btn_cerrar->Name = L"pl_informe_btn_cerrar";
+			this->pl_informe_btn_cerrar->Size = System::Drawing::Size(75, 31);
+			this->pl_informe_btn_cerrar->TabIndex = 36;
+			this->pl_informe_btn_cerrar->Text = L"cerrar";
+			this->pl_informe_btn_cerrar->UseVisualStyleBackColor = true;
+			this->pl_informe_btn_cerrar->Click += gcnew System::EventHandler(this, &main::pl_informe_btn_cerrar_Click);
+			// 
+			// pl_informe_btn_guardar
+			// 
+			this->pl_informe_btn_guardar->Location = System::Drawing::Point(55, 56);
+			this->pl_informe_btn_guardar->Name = L"pl_informe_btn_guardar";
+			this->pl_informe_btn_guardar->Size = System::Drawing::Size(75, 31);
+			this->pl_informe_btn_guardar->TabIndex = 35;
+			this->pl_informe_btn_guardar->Text = L"guardar";
+			this->pl_informe_btn_guardar->UseVisualStyleBackColor = true;
+			this->pl_informe_btn_guardar->Click += gcnew System::EventHandler(this, &main::pl_informe_btn_guardar_Click);
+			// 
+			// pl_informe_tB_nombre
+			// 
+			this->pl_informe_tB_nombre->Location = System::Drawing::Point(44, 30);
+			this->pl_informe_tB_nombre->Name = L"pl_informe_tB_nombre";
+			this->pl_informe_tB_nombre->Size = System::Drawing::Size(100, 20);
+			this->pl_informe_tB_nombre->TabIndex = 35;
+			// 
+			// pl_informe_lbl_nombre
+			// 
+			this->pl_informe_lbl_nombre->AutoSize = true;
+			this->pl_informe_lbl_nombre->Location = System::Drawing::Point(45, 14);
+			this->pl_informe_lbl_nombre->Name = L"pl_informe_lbl_nombre";
+			this->pl_informe_lbl_nombre->Size = System::Drawing::Size(99, 13);
+			this->pl_informe_lbl_nombre->TabIndex = 0;
+			this->pl_informe_lbl_nombre->Text = L"Nombre del archivo";
+			// 
 			// main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1470, 657);
+			this->ClientSize = System::Drawing::Size(980, 427);
+			this->Controls->Add(this->pl_informe);
 			this->Controls->Add(this->pl_buscar);
 			this->Controls->Add(this->btn_filtrar);
 			this->Controls->Add(this->pl_inventario);
@@ -944,6 +1012,8 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 			this->pl_inventario->PerformLayout();
 			this->pl_buscar->ResumeLayout(false);
 			this->pl_buscar->PerformLayout();
+			this->pl_informe->ResumeLayout(false);
+			this->pl_informe->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -951,10 +1021,12 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 #pragma endregion
 		
 		//Contiene todos los metodos y las variables del sistema
-		Sistema sistema;
-		//Categoría seleccionada
-		Clasificación categoría = ventaLibre;
-		void actualizar();
+		Sistema^ sistema = gcnew Sistema();
+		//CategorÃ­a seleccionada
+		ClasificaciÃ³n categorÃ­a = ventaLibre;
+		//Form para filtrar medicamentos
+		Filtrar^ formFiltrado;
+    void actualizar();
 		void desplegarProveedores();
 		void desplegarInventario(Inventario^ inventario);
 
@@ -969,7 +1041,7 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 		private: System::Void btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
 		//Selecciona la categoria "Venta libre"	
 		private: System::Void rB_libre_Click(System::Object^ sender, System::EventArgs^ e);
-		//Selecciona la categoría "Venta receta"
+		//Selecciona la categorÃ­a "Venta receta"
 		private: System::Void rB_receta_Click(System::Object^ sender, System::EventArgs^ e);
 		//Despliega el inventario del medicamento dado
 		private: System::Void dgv_medicamento_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e);
@@ -987,6 +1059,14 @@ private: System::Windows::Forms::Label^ pl_buscar_lbl_principio;
 		private: System::Void pl_buscar_btn_nombre_Click(System::Object^ sender, System::EventArgs^ e);
 		//Busca el medicamento a partir de su principio activo
 		private: System::Void pl_buscar_btn_principio_Click(System::Object^ sender, System::EventArgs^ e);
+		//Muestra el panel para crear un informe
+		private: System::Void btn_informe_Click(System::Object^ sender, System::EventArgs^ e);
+		//Guarda los datos ingresados a un csv
+		private: System::Void pl_informe_btn_guardar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Cierra el panel del informe
+		private: System::Void pl_informe_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Abre el form utilizado para mostrar los medicamentos con un filtro dado
+		private: System::Void btn_filtrar_Click(System::Object^ sender, System::EventArgs^ e);
 #pragma endregion
 	
 private: System::Void dgv_inventario_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
