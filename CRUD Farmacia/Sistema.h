@@ -29,4 +29,5 @@ public:
 	int inventarioVacio();
 	void filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv, int index);
 	void filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría);
+	void sort();
 };

@@ -71,3 +71,7 @@ void Sistema::filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv, int
 void Sistema::filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría) {
 	listaInventario.filtrarPorCategoría(dgv, categoría);
 }
+
+void Sistema::sort() {
+	listaInventario.sort();
+}

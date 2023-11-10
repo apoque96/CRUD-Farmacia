@@ -145,8 +145,7 @@ System::Void main::rB_receta_Click(System::Object^ sender, System::EventArgs^ e)
 //Despliega los datos de inventario del medicamento seleccionado
 System::Void main::dgv_medicamento_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	desplegarInventario(
-		sistema->getInventario(
-		System::Convert::ToInt32(dgv_medicamento->CurrentRow->Cells[1]->Value)));
+		sistema->getInventario(dgv_medicamento->CurrentRow->Cells[0]->Value->ToString()));
 }
 //Muestra el panel para que el usuario ingrese el medicamento a buscar
 System::Void main::btn_inventario_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -232,6 +231,7 @@ System::Void main::pl_informe_btn_guardar_Click(System::Object^ sender, System::
 		return;
 	}
 	try {
+		sistema->sort();
 		msclr::interop::marshal_context context;
 		sistema->generarInforme(context.marshal_as<std::string>(pl_informe_tB_nombre->Text));
 		MessageBox::Show("Se han guardado los datos en un archivo CSV");
