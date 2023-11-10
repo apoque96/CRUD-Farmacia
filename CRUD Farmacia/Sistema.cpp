@@ -1,14 +1,17 @@
 #pragma once
 #include "Sistema.h"
+#include"main.h"
 
 void Sistema::registrar(System::String^ nombre, System::String^ principio, double dosis, int stock,
 	Proveedor^ proveedor, System::String^ caducidad, double compra, double venta) {
 	
 	//TODO
 }
+
 void Sistema::actualizar(Inventario^ inventario) {
 	//TODO
 }
+
 void Sistema::informe() {
 	//TODO
 }
@@ -19,7 +22,7 @@ int Sistema::promedio() {
 void Sistema::inventarioMedicamento(Inventario^ inventario) {
 	//TODO
 }
-double Sistema::precioMásAlto(Proveedor^ proveedor) {
+double Sistema::precioMÃ¡sAlto(Proveedor^ proveedor) {
 	//TODO
 	return 0;
 }
@@ -28,7 +31,7 @@ Medicamento^ Sistema::buscarCriterio() {
 	return nullptr;
 }
 
-void Sistema::añadirProveedor(Proveedor^ proveedor) {
+void Sistema::aÃ±adirProveedor(Proveedor^ proveedor) {
 	listaProveedores.Add(proveedor);
 }
 
@@ -36,7 +39,7 @@ Proveedor^ Sistema::getProveedor(int index) {
 	return listaProveedores.GetNodeVal(listaProveedores.Get(index));
 }
 
-void Sistema::añadirInventario(Inventario^ inventario) {
+void Sistema::aÃ±adirInventario(Inventario^ inventario) {
 	listaInventario.Add(inventario);
 }
 
@@ -52,7 +55,7 @@ Inventario^ Sistema::getInventarioPrincipio(System::String^ principio) {
 	return listaInventario.GetNodeVal(listaInventario.GetMedicamentoPrincipio(principio));
 }
 
-void Sistema::añadirMedicamentoAProveedor(Medicamento^ medicamento, int index) {
+void Sistema::aÃ±adirMedicamentoAProveedor(Medicamento^ medicamento, int index) {
 	listaProveedores.GetNodeVal(listaProveedores.Get(index))->agregarMedicamento(medicamento);
 }
 
@@ -68,6 +71,6 @@ void Sistema::filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv, int
 	listaProveedores.GetNodeVal(listaProveedores.Get(index))->filtrarPorProveedor(dgv);
 }
 
-void Sistema::filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría) {
-	listaInventario.filtrarPorCategoría(dgv, categoría);
+void Sistema::filtrarPorCategorÃ­a(System::Windows::Forms::DataGridView^ dgv, int categorÃ­a) {
+	listaInventario.filtrarPorCategorÃ­a(dgv, categorÃ­a);
 }

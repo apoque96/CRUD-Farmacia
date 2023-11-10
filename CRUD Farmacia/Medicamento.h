@@ -23,4 +23,9 @@ public:
 	Clasificación getCategoría();
 	double getDosisMg();
 	System::String^ getPrincipiosActivos();
+	void setNombre(System::String^ nombre);
+	void setNumRegistro(int NumRegistro);
+	void setDosisMg(double dosisRecomendada_mg);
+	void setPrincipiosActivos(System::String^ principiosActivos);
+	void setCategoría(Clasificación categoría);
 };
