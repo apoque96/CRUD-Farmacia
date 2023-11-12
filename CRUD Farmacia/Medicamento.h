@@ -1,6 +1,6 @@
 #pragma once
 
-enum Clasificaci髇 {
+enum Clasificaci贸n {
 	ventaLibre = 0,
 	ventaReceta = 1
 };
@@ -9,23 +9,23 @@ ref class Medicamento {
 protected:
 	System::String^ nombre;
 	int numRegistro;
-	Clasificaci髇 categor韆;
+	Clasificaci贸n categor铆a;
 	double dosisRecomendada_mg;
 	System::String^ principiosActivos;
 	static int idRegistro;
 public:
 	Medicamento(){}
-	Medicamento(System::String^ nombre, Clasificaci髇 categor韆, 
+	Medicamento(System::String^ nombre, Clasificaci贸n categor铆a, 
 		double dosisRecomendadaMg, System::String^ principiosActivos);
 	Medicamento(Medicamento% m);
 	System::String^ getNombre();
 	int getNumRegistro();
-	Clasificaci髇 getCategor韆();
+	Clasificaci贸n getCategor铆a();
 	double getDosisMg();
 	System::String^ getPrincipiosActivos();
 	void setNombre(System::String^ nombre);
 	void setNumRegistro(int NumRegistro);
 	void setDosisMg(double dosisRecomendada_mg);
 	void setPrincipiosActivos(System::String^ principiosActivos);
-	void setCategor韆(Clasificaci髇 categor韆);
+	void setCategor铆a(Clasificaci贸n categor铆a);
 };
