@@ -18,6 +18,29 @@ void main(array<String^>^ args)
 
 	}
 }
+//Convierte los datos tipo double a un string de 5 caracters y 2 puntos decimales
+//Pd: esto es horrible
+System::String^ DToS(double d) {
+	msclr::interop::marshal_context context;
+	std::string s = context.marshal_as<std::string>(d.ToString());
+	if (s.size() == 6) return gcnew System::String(s.c_str());
+	if (s.size() == 3) {
+		if (s[s.size() - 1] != '.' && s[s.size() - 2] != '.' && s[s.size() - 3] != '.') s += '.';
+	}
+	else if (s.size() == 2) {
+		if (s[s.size() - 1] != '.' && s[s.size() - 2] != '.') s += '.';
+	}
+	else if (s.size() == 1) {
+		if (s[s.size() - 1] != '.') s += '.';
+	}
+	if (s.size() - s.find('.') == 1) s += "0";
+	if (s.size() - s.find('.') == 2) s += "0";
+	while (s.size() < 6) {
+		s = '0' + s;
+	}
+	return gcnew System::String(s.c_str());
+}
+
 //Despliega los datos de los proveedores
 void main::desplegarProveedores() {
 	Proveedor^ temp;
@@ -47,12 +70,12 @@ void main::desplegarInventario(Inventario^ inventario) {
 	);
 	tB_nombre->Text = inventario->getNombre();
 	tB_principio->Text = inventario->getPrincipiosActivos();
-	tB_dosis->Text = System::Convert::ToString(inventario->getDosisMg());
+	tB_dosis->Text = DToS(inventario->getDosisMg());
 	tB_stock->Text = System::Convert::ToString(inventario->getCantidad());
 	System::DateTime fecha = System::DateTime::Parse(inventario->getCaducidad());
 	dT_caducidad->Value = fecha;
-	tB_compra->Text = System::Convert::ToString(inventario->getCompra());
-	tB_venta->Text = System::Convert::ToString(inventario->getVenta());
+	tB_compra->Text = DToS(inventario->getCompra());
+	tB_venta->Text = DToS(inventario->getVenta());
 	if (inventario->getCategoría() == 0) {
 		rB_libre->Checked = true;
 		categoría = ventaLibre;
@@ -257,7 +280,7 @@ System::Void main::pl_informe_btn_guardar_Click(System::Object^ sender, System::
 		sistema->sort();
 		msclr::interop::marshal_context context;
 		sistema->generarInforme(context.marshal_as<std::string>(pl_informe_tB_nombre->Text));
-		MessageBox::Show("Se han guardado los datos en un archivo CSV");
+		MessageBox::Show("Se han guardado los datos en un archivo CSV en: " + Environment::CurrentDirectory);
 	}
 	catch (...) {
 		MessageBox::Show("No se ha logrado guardar los datos");
@@ -292,4 +315,12 @@ void main::actualizar()
 //Actualiza los datos del medicamento
 System::Void main::btn_actualizar_Click(System::Object^ sender, System::EventArgs^ e) {
 	actualizar();
+}
+
+//Obtiene el promedio del precio de venta y de compra
+System::Void main::btn_promedio_Click(System::Object^ sender, System::EventArgs^ e) {
+	MessageBox::Show(
+		"Promedio de Venta: " + sistema->getPromV().ToString() +
+		"\nPromedio de Compra " + sistema->getPromC().ToString()
+	);
 }

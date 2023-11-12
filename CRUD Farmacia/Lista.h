@@ -238,6 +238,48 @@ public:
 			current = current->next;
 		}
 	}
+	//Obtiene el promedio del precio de compra
+	//Nota: utilizar solamente en listas de inventario
+	double promC() {
+		int n = 0;
+		Node<T>^ nodeAcutal;
+		int sum = 0;
+
+		if (head == nullptr) {
+			return 0;
+		}
+		else {
+			nodeAcutal = head;
+			while (nodeAcutal != nullptr)
+			{
+				sum += nodeAcutal->val->getCompra();
+				nodeAcutal = nodeAcutal->next;
+				n++;
+			}
+		}
+		return sum / n;
+	}
+	//Obtiene el promedio del precio de venta
+	//Nota: utilizar solamente en listas de inventario
+	double promV() {
+		int n = 0;
+		Node<T>^ nodeAcutal;
+		int sum = 0;
+
+		if (head == nullptr) {
+			return 0;
+		}
+		else {
+			nodeAcutal = head;
+			while (nodeAcutal != nullptr)
+			{
+				sum += nodeAcutal->val->getVenta();
+				nodeAcutal = nodeAcutal->next;
+				n++;
+			}
+		}
+		return sum / n;
+	}
 #pragma region Sort
 	void swap(Node<T>^ a, Node<T>^ b) {
 		T temp = a->val;

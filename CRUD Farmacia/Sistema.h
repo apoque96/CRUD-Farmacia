@@ -30,4 +30,6 @@ public:
 	void filtrarPorProveedor(System::Windows::Forms::DataGridView^ dgv, int index);
 	void filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría);
 	void sort();
+	double Sistema::getPromC();
+	double Sistema::getPromV();
 };

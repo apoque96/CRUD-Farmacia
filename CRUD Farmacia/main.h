@@ -423,6 +423,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			this->btn_promedio->TabIndex = 5;
 			this->btn_promedio->Text = L"Promedio";
 			this->btn_promedio->UseVisualStyleBackColor = true;
+			this->btn_promedio->Click += gcnew System::EventHandler(this, &main::btn_promedio_Click);
 			// 
 			// btn_precio
 			// 
@@ -1001,6 +1002,8 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 		private: System::Void btn_filtrar_Click(System::Object^ sender, System::EventArgs^ e);
 		//Actualiza los datos del medicamento
 		private: System::Void btn_actualizar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Obtiene el promedio del precio de venta y de compra
+		private: System::Void btn_promedio_Click(System::Object^ sender, System::EventArgs^ e);
 #pragma endregion
 	};
 }

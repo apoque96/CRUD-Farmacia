@@ -75,3 +75,13 @@ void Sistema::filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int
 void Sistema::sort() {
 	listaInventario.sort();
 }
+
+double Sistema::getPromC()
+{
+	return listaInventario.promC();
+}
+
+double Sistema::getPromV()
+{
+	return listaInventario.promV();
+}
