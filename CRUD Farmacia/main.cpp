@@ -45,6 +45,29 @@ void main::desplegarInventario(Inventario^ inventario) {
 		inventario->getCompra().ToString(),
 		inventario->getVenta().ToString()
 	);
+	tB_nombre->Text = inventario->getNombre();
+	tB_principio->Text = inventario->getPrincipiosActivos();
+	tB_dosis->Text = System::Convert::ToString(inventario->getDosisMg());
+	tB_stock->Text = System::Convert::ToString(inventario->getCantidad());
+	System::DateTime fecha = System::DateTime::Parse(inventario->getCaducidad());
+	dT_caducidad->Value = fecha;
+	tB_compra->Text = System::Convert::ToString(inventario->getCompra());
+	tB_venta->Text = System::Convert::ToString(inventario->getVenta());
+	if (inventario->getCategoría() == 0) {
+		rB_libre->Checked = true;
+		categoría = ventaLibre;
+	}
+	else {
+		rB_receta->Checked = true;
+		categoría = ventaReceta;
+	}
+	//Selecciona al proveedor en el dgv
+	int index = inventario->getProveedor()->getId();
+	for (int i = 0; i < 4; i++) {
+		if (System::Convert::ToInt16(dgv_proveedor->Rows[i]->Cells[6]->Value) != index) continue;
+		dgv_proveedor->CurrentCell = dgv_proveedor->Rows[i]->Cells[0];
+		break;
+	}
 }
 //Llena el dataGridView con los 4 proveedores
 System::Void main::main_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -249,4 +272,24 @@ System::Void main::btn_filtrar_Click(System::Object^ sender, System::EventArgs^ 
 	formFiltrado = gcnew Filtrar();
 	formFiltrado->Show();
 	formFiltrado->pasarSistema(sistema);
+}
+
+void main::actualizar()
+{
+	Inventario^ medicamentos = sistema->getInventario(tB_nombre->Text);
+	if (!medicamentos) return;
+	medicamentos->setNombre(tB_nombre->Text);
+	medicamentos->setCaducidad(dT_caducidad->Value.ToString());
+	medicamentos->setCantidad(System::Convert::ToInt32(tB_stock->Text));
+	medicamentos->setCompra(validarDouble(tB_compra->Text));
+	medicamentos->setDosisMg(validarDouble(tB_dosis->Text));
+	medicamentos->setVenta(validarDouble(tB_venta->Text));
+	medicamentos->setPrincipiosActivos(tB_principio->Text);
+	medicamentos->setCategoría(categoría);
+	desplegarInventario(medicamentos);
+}
+
+//Actualiza los datos del medicamento
+System::Void main::btn_actualizar_Click(System::Object^ sender, System::EventArgs^ e) {
+	actualizar();
 }
