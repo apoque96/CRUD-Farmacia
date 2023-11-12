@@ -969,7 +969,6 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			this->ClientSize = System::Drawing::Size(980, 427);
 			this->Controls->Add(this->pl_informe);
 			this->Controls->Add(this->pl_buscar);
-			this->Controls->Add(this->btn_filtrar);
 			this->Controls->Add(this->pl_inventario);
 			this->Controls->Add(this->pl_proveedores);
 			this->Controls->Add(this->rB_receta);
@@ -1000,7 +999,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 			this->Controls->Add(this->dgv_inventario);
 			this->Controls->Add(this->dgv_medicamento);
 			this->Controls->Add(this->btn_inventario);
-			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->Controls->Add(this->btn_filtrar);
 			this->Name = L"main";
 			this->Text = L"main";
 			this->Load += gcnew System::EventHandler(this, &main::main_Load);
@@ -1029,6 +1028,7 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
     void actualizar();
 		void desplegarProveedores();
 		void desplegarInventario(Inventario^ inventario);
+		void actualizar();
 
 		//Llena el dataGridView con los 4 proveedores
 		private: System::Void main_Load(System::Object^ sender, System::EventArgs^ e);
@@ -1067,6 +1067,10 @@ private: System::Windows::Forms::Label^ pl_informe_lbl_nombre;
 		private: System::Void pl_informe_btn_cerrar_Click(System::Object^ sender, System::EventArgs^ e);
 		//Abre el form utilizado para mostrar los medicamentos con un filtro dado
 		private: System::Void btn_filtrar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Actualiza los datos del medicamento
+		private: System::Void btn_actualizar_Click(System::Object^ sender, System::EventArgs^ e);
+		//Obtiene el promedio del precio de venta y de compra
+		private: System::Void btn_promedio_Click(System::Object^ sender, System::EventArgs^ e);
 #pragma endregion
 	
 private: System::Void dgv_inventario_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {

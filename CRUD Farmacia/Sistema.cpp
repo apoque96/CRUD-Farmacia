@@ -2,35 +2,6 @@
 #include "Sistema.h"
 #include"main.h"
 
-void Sistema::registrar(System::String^ nombre, System::String^ principio, double dosis, int stock,
-	Proveedor^ proveedor, System::String^ caducidad, double compra, double venta) {
-	
-	//TODO
-}
-
-void Sistema::actualizar(Inventario^ inventario) {
-	//TODO
-}
-
-void Sistema::informe() {
-	//TODO
-}
-int Sistema::promedio() {
-	//TODO
-	return 0;
-}
-void Sistema::inventarioMedicamento(Inventario^ inventario) {
-	//TODO
-}
-double Sistema::precioMásAlto(Proveedor^ proveedor) {
-	//TODO
-	return 0;
-}
-Medicamento^ Sistema::buscarCriterio() {
-	//TODO
-	return nullptr;
-}
-
 void Sistema::añadirProveedor(Proveedor^ proveedor) {
 	listaProveedores.Add(proveedor);
 }
@@ -87,6 +58,12 @@ void Sistema::filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, in
 void Sistema::sort() {
 	listaInventario.sort();
 }
-void Sistema::filtrarPorCategoría(System::Windows::Forms::DataGridView^ dgv, int categoría) {
-	listaInventario.filtrarPorCategoría(dgv, categoría);
+double Sistema::getPromC()
+{
+	return listaInventario.promC();
+}
+
+double Sistema::getPromV()
+{
+	return listaInventario.promV();
 }

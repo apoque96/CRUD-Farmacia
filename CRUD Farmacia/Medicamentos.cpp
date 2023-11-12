@@ -1,17 +1,17 @@
 #pragma once
 #include "Medicamento.h"
 
-Medicamento::Medicamento(System::String^ nombre, ClasificaciÛn categorÌa,
+Medicamento::Medicamento(System::String^ nombre, Clasificaci√≥n categor√≠a,
 	double dosisRecomendadaMg, System::String^ principiosActivos) {
 	this->nombre = nombre;
-	this->categorÌa = categorÌa;
+	this->categor√≠a = categor√≠a;
 	this->dosisRecomendada_mg = dosisRecomendadaMg;
 	this->principiosActivos = principiosActivos;
-	this->numRegistro = numRegistro;
+	this->numRegistro = idRegistro-1;
 }
 Medicamento::Medicamento(Medicamento% m) {
 	nombre = m.nombre;
-	categorÌa = m.categorÌa;
+	categor√≠a = m.categor√≠a;
 	dosisRecomendada_mg = m.dosisRecomendada_mg;
 	principiosActivos = m.principiosActivos;
 	numRegistro = m.numRegistro;
@@ -22,8 +22,8 @@ System::String^ Medicamento::getNombre() {
 int Medicamento::getNumRegistro() {
 	return numRegistro;
 }
-ClasificaciÛn Medicamento::getCategorÌa() {
-	return categorÌa;
+Clasificaci√≥n Medicamento::getCategor√≠a() {
+	return categor√≠a;
 }
 double Medicamento::getDosisMg() {
 	return dosisRecomendada_mg;
@@ -52,7 +52,7 @@ void Medicamento::setPrincipiosActivos(System::String^ principiosActivos)
 	this->principiosActivos = principiosActivos;
 }
 
-void Medicamento::setCategorÌa(ClasificaciÛn categorÌa)
+void Medicamento::setCategor√≠a(Clasificaci√≥n categor√≠a)
 {
-	this->categorÌa = categorÌa;
+	this->categor√≠a = categor√≠a;
 }
